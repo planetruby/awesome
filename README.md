@@ -22,8 +22,9 @@ A collection of awesome Ruby web servers (single-threaded, multi-threaded, multi
 [Multi-Threaded Web Server](#multi-threaded-web-server) •
 [Multi-Process Web Server](#multi-process-web-server) •
 [Async I/O, Multiplexed "Evented" Web Server](#async-io-multiplexed-evented-web-server) •
+[HTTP/2 Web Server](#http2-web-server) •
 [More Web Servers](#more-web-servers) •
-[Misc (Web) Server Machines / Building Blocks](#mics-web-server-machines)
+[(Web) Server Machines / Building Blocks](#web-server-machines--building-blocks)
 
 
 <!--
@@ -63,7 +64,12 @@ server.start
 - Reel (GitHub: [celluloid/reel](https://github.com/celluloid/reel), gem: [reel](https://rubygems.org/gems/reel) _depends on celluloid_) -  a fast, non-blocking "evented" web server built on Celluloid::IO; by Tony Arcieri et al
 
 
-## Misc (Web) Server Machines / Building Blocks
+## HTTP/2 Web Server
+
+- HTTP-2 (GitHub: [igrigorik/http-2](https://github.com/igrigorik/http-2), gem: [http-2](https://rubygems.org/gems/http-2)) - pure-ruby HTTP/2 protocol and HPACK header compression machinery; includes an `HTTP2::Server` for testing; by Ilya Grigorik et al 
+
+
+## (Web) Server Machines / Building Blocks
 
 - [Event Machine](http://rubyeventmachine.com) **c** (GitHub:  [eventmachine/eventmachine](https://github.com/eventmachine/eventmachine), gem: [eventmachine](https://rubygems.org/gems/eventmachine)) -  a fast, single-threaded engine for arbitrary network communications; wraps all interactions with IP sockets, allowing programs  to focus on coding the network protocols; works for both network servers and clients; by Francis Cianfrocca, Aman Gupta et al
 
@@ -72,15 +78,16 @@ server.start
 
 ## Feature Matrix
 
-| Server     | Rack   |  Multi-Threaded | Multi-Fiber | Multi-Process | Evented | Watchdog | C Extension |
-| :--------  | :----: | :-------------: | :---------: | :-----------: | :-----: | :------: | :---------: |
-| WEBRick    |  Yes   |    Yes          |   x         |   x           |  x      |   x      |  x          |
-| Passenger  |  Yes   |    Yes          |   x         |   Yes         |   Yes   |  Yes     |  Yes        |
-| Puma       |  Yes   |    Yes          |   x         |   x           |   x     |   x      |  Yes        |
-| Unicorn    |  Yes   |     x           |   x         |   Yes         |   Yes   |  Yes     |  Yes        | 
-| Thin       |  Yes   |    Yes          |   x         |   x           |  Yes    |   x      |  Yes        |
-| Goliath    |  Yes   |     x           |  Yes        |   x           |  Yes    |   x      |  Yes        |
-| Reel       |  x     |    ??           |   x         |   x           |  Yes    |   x      |  ??
+| Server     | Rack   | HTTP/2 | Multi-Threaded | Multi-Fiber | Multi-Process | Evented | Watchdog | C Extension |
+| :--------  | :----: | :----: | :-------------: | :---------: | :-----------: | :-----: | :------: | :---------: |
+| WEBRick    |  Yes   |   x    |   Yes          |   x         |   x           |  x      |   x      |  x          |
+| Passenger  |  Yes   |  ??    |  Yes          |   x         |   Yes         |   Yes   |  Yes     |  Yes        |
+| Puma       |  Yes   |   x    |  Yes          |   x         |   x           |   x     |   x      |  Yes        |
+| Unicorn    |  Yes   |   x    |  x           |   x         |   Yes         |   Yes   |  Yes     |  Yes        | 
+| Thin       |  Yes   |   x    |  Yes          |   x         |   x           |  Yes    |   x      |  Yes        |
+| Goliath    |  Yes   |   x    |  x           |  Yes        |   x           |  Yes    |   x      |  Yes        |
+| Reel       |  x     |   x    |  ??           |   x         |   x           |  Yes    |   x      |  ??
+| HTTP-2     |  ??    |  Yes   |  ??           |   x         |   x           |  Yes    |   x      |  x |
 
 
 (Note: Thin, Goliath, ... using EventMachine - ; Reel, ... using Celluloid:IO for evented, non-blocking async I/O)
