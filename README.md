@@ -83,7 +83,7 @@ server.start
 | Reel       |  x     |    ??           |   x         |   x           |  Yes    |   x      |  ??
 
 
-(Note: Thin, Goliath, ?? using EventMachine - ; Reel, ?? using Celluloid:IO for evented, non-blocking async I/O)
+(Note: Thin, Goliath, ... using EventMachine - ; Reel, ... using Celluloid:IO for evented, non-blocking async I/O)
 
 
 
@@ -137,7 +137,7 @@ Run WEBrick HTTP server.
   -v                          verbose
 ~~~
 
-Source in ruby/ruby/lib/[`un.rb` :octocat:](https://github.com/ruby/ruby/blob/trunk/lib/un.rb) (search for the `httpd` method) e.g.:
+Source in ruby/ruby/lib/[un.rb](https://github.com/ruby/ruby/blob/trunk/lib/un.rb) (search for the `httpd` method) e.g.:
 
 ~~~
 def httpd
