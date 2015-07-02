@@ -76,61 +76,6 @@ Todo: What features to add?
 - Websocket ?
 
 
-## Command Line Tools
-
-### thin
-
-~~~
-$ thin -h
-~~~
-
-resulting in:
-
-~~~
-Usage: thin [options] start|stop|restart|config
-
-Server options:
-    -a, --address HOST               bind to HOST address (default: 0.0.0.0)
-    -p, --port PORT                  use PORT (default: 3000)
-    -S, --socket FILE                bind to unix domain socket
-    -y, --swiftiply [KEY]            Run using swiftiply
-    -A, --adapter NAME               Rack adapter to use (default: autodetect)
-                                     (rack, rails, ramaze, merb, file)
-    -R, --rackup FILE                Load a Rack config file instead of Rack adapter
-    -c, --chdir DIR                  Change to dir before starting
-        --stats PATH                 Mount the Stats adapter under PATH
-
-SSL options:
-        --ssl                        Enables SSL
-        --ssl-key-file PATH          Path to private key
-        --ssl-cert-file PATH         Path to certificate
-        --ssl-disable-verify         Disables (optional) client cert requests
-
-Adapter options:
-    -e, --environment ENV            Framework environment (default: development)
-        --prefix PATH                Mount the app under PATH (start with /)
-
-Tuning options:
-    -b, --backend CLASS              Backend to use, full classname
-    -t, --timeout SEC                Request or command timeout in sec (default: 30)
-    -f, --force                      Force the execution of the command
-        --max-persistent-conns NUM   Maximum number of persistent connections
-                                     (default: 100)
-        --threaded                   Call the Rack application in threads [experimental]
-        --threadpool-size NUM        Sets the size of the EventMachine threadpool.
-                                     (default: 20)
-
-Common options:
-    -r, --require FILE               require the library
-    -q, --quiet                      Silence all logging
-    -D, --debug                      Enable debug logging
-    -V, --trace                      Set tracing on (log raw request/response)
-    -h, --help                       Show this message
-    -v, --version                    Show version
-~~~
-
-
-
 ## Tipps & Tricks
 
 ### (r)un - Ruby Standard Library
@@ -189,6 +134,60 @@ def httpd
     s.start
   end
 end
+~~~
+
+
+## Command Line Tools
+
+### thin
+
+~~~
+$ thin -h
+~~~
+
+resulting in:
+
+~~~
+Usage: thin [options] start|stop|restart|config
+
+Server options:
+    -a, --address HOST               bind to HOST address (default: 0.0.0.0)
+    -p, --port PORT                  use PORT (default: 3000)
+    -S, --socket FILE                bind to unix domain socket
+    -y, --swiftiply [KEY]            Run using swiftiply
+    -A, --adapter NAME               Rack adapter to use (default: autodetect)
+                                     (rack, rails, ramaze, merb, file)
+    -R, --rackup FILE                Load a Rack config file instead of Rack adapter
+    -c, --chdir DIR                  Change to dir before starting
+        --stats PATH                 Mount the Stats adapter under PATH
+
+SSL options:
+        --ssl                        Enables SSL
+        --ssl-key-file PATH          Path to private key
+        --ssl-cert-file PATH         Path to certificate
+        --ssl-disable-verify         Disables (optional) client cert requests
+
+Adapter options:
+    -e, --environment ENV            Framework environment (default: development)
+        --prefix PATH                Mount the app under PATH (start with /)
+
+Tuning options:
+    -b, --backend CLASS              Backend to use, full classname
+    -t, --timeout SEC                Request or command timeout in sec (default: 30)
+    -f, --force                      Force the execution of the command
+        --max-persistent-conns NUM   Maximum number of persistent connections
+                                     (default: 100)
+        --threaded                   Call the Rack application in threads [experimental]
+        --threadpool-size NUM        Sets the size of the EventMachine threadpool.
+                                     (default: 20)
+
+Common options:
+    -r, --require FILE               require the library
+    -q, --quiet                      Silence all logging
+    -D, --debug                      Enable debug logging
+    -V, --trace                      Set tracing on (log raw request/response)
+    -h, --help                       Show this message
+    -v, --version                    Show version
 ~~~
 
 
