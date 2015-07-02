@@ -43,9 +43,76 @@ Note: :octocat: stands for the GitHub page and :gem: for the RubyGems page.
 
 - [Thin HQ](http://code.macournoyer.com/thin) - [:octocat:](https://github.com/macournoyer/thin), [:gem:](https://rubygems.org/gems/thin) - a simple and fast web server; powered by event machine by Marc-André Cournoyer et al
 
+Examples:
+
+~~~
+require 'thin'
+
+class SimpleAdapter
+  def call(env)
+    body = ["hello!"]
+    [
+      200,
+      { 'Content-Type' => 'text/plain' },
+      body
+    ]
+  end
+end
+
+Thin::Server.start('0.0.0.0', 3000) do
+  use Rack::CommonLogger
+  map '/test' do
+    run SimpleAdapter.new
+  end
+  map '/files' do
+    run Rack::File.new('.')
+  end
+end
+~~~
+
+
 - [Goliath HQ](http://goliath.io) - [:octocat:](https://github.com/postrank-labs/goliath), [:gem:](https://rubygems.org/gems/goliath) - non-blocking (async) web server framework; powered by event machine; uses fibers to untangle the complicated callback-based code into "plain old" linear-execution
 
+Examples:
+
+~~~
+require 'goliath'
+
+class HelloWorld < Goliath::API
+  def response(env)
+    [200, {}, "hello world"]
+  end
+end
+~~~
+
+(Source: [`hello_world.rb`](https://github.com/postrank-labs/goliath/blob/master/examples/hello_world.rb))
+
+
 - [Reel HQ :octocat:](https://github.com/celluloid/reel) - [:gem:](https://rubygems.org/gems/reel) -  a fast, non-blocking "evented" web server built on Celluloid::IO; by Tony Arcieri et al
+
+Examples:
+
+~~~
+require 'reel'
+
+addr, port = '127.0.0.1', 1234
+
+puts "*** Starting server on http://#{addr}:#{port}"
+Reel::Server::HTTP.run(addr, port) do |connection|
+  # For keep-alive support
+  connection.each_request do |request|
+    # Ordinarily we'd route the request here, e.g.
+    # route request.url
+    request.respond :ok, "hello, world!"
+  end
+
+  # Reel takes care of closing the connection for you
+  # If you would like to hand the connection off to another thread or actor,
+  # use, connection.detach and then manually call connection.close when done
+end
+~~~
+
+(Source: [`hello_world.rb`](https://github.com/celluloid/reel/blob/master/examples/hello_world.rb))
 
 
 ## Misc (Web) Server Machines / Building Blocks
