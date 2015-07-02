@@ -1,3 +1,12 @@
+Awesome Series @ Planet Ruby
+
+[Rubies (Virtual Machines, Compilers, ...)](https://github.com/planetruby/awesome-rubies) • 
+[ActiveRecord](https://github.com/planetruby/awesome-activerecord)  •
+[Webframeworks (Micro, Macro, APIs, ...)](https://github.com/planetruby/awesome-webframeworks) •
+[Webservers (Single-Threaded, Multi-Threaded, Multi-Plexed, ...)](https://github.com/planetruby/awesome-webservers) •
+[Static Generators (Sites, Books, Presentations, ...)](https://github.com/planetruby/awesome-staticgen) •
+[Events (Conferences, Camps, Meetups, ...)](https://github.com/planetruby/awesome-events) •
+[Blogs (News, Opinions, Podcasts, ...)](https://github.com/planetruby/awesome-blogs)
 
 
 # Webservers
@@ -41,9 +50,9 @@ Note: :octocat: stands for the GitHub page and :gem: for the RubyGems page.
 
 ## More / Misc Web Servers
 
-[Event Machine HQ](http://rubyeventmachine.com) - [:octocat:](https://github.com/eventmachine/eventmachine), [:gem:](https://rubygems.org/gems/eventmachine) -  a fast, single-threaded engine for arbitrary network communications; wraps all interactions with IP sockets, allowing programs  to focus on coding the network protocols; works for both network servers and clientsby Francis Cianfrocca, Aman Gupta et al
-  
-[Celluloid:IO HQ :octocat:](https://github.com/celluloid/celluloid-io), [:gem:](https://rubygems.org/gems/celluloid-io) - evented I/O for celluloid actors; build fast evented programs like you would with EventMachine or Node.js using regular synchronous libraries based on TCPSocket; by by Tony Arcieri et al 
+[Event Machine HQ](http://rubyeventmachine.com) - [:octocat:](https://github.com/eventmachine/eventmachine), [:gem:](https://rubygems.org/gems/eventmachine) -  a fast, single-threaded engine for arbitrary network communications; wraps all interactions with IP sockets, allowing programs  to focus on coding the network protocols; works for both network servers and clients; by Francis Cianfrocca, Aman Gupta et al
+
+[Celluloid:IO HQ :octocat:](https://github.com/celluloid/celluloid-io), [:gem:](https://rubygems.org/gems/celluloid-io) - evented I/O for celluloid actors; build fast evented programs like you would with EventMachine or Node.js using regular synchronous libraries based on TCPSocket; by Tony Arcieri et al 
 
 
 ## Meta
