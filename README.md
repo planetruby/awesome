@@ -28,7 +28,7 @@ Note: :octocat: stands for the GitHub page and :gem: for the RubyGems page.
 
 ## Simple Single-Threaded Web Server
 
-- [WEBrick :octocat:](https://github.com/ruby/ruby/blob/trunk/lib/webrick.rb) - a HTTP server toolkit; ships with the standard library (stdlib); lets you use HTTP(S) servers, proxy servers, and virtual-host servers; by Masayoshi Takahashi, Yuuzou Gotou et al
+- [WEBrick :octocat:](https://github.com/ruby/ruby/blob/trunk/lib/webrick.rb) - an HTTP server toolkit; ships with the standard library (stdlib); lets you use HTTP(S) servers, proxy servers, and virtual-host servers; by Masayoshi Takahashi, Yuuzou Gotou et al
 
 ~~~
 require 'webrick'
@@ -48,7 +48,7 @@ server.start
 
 ## Multi-Process Web Server
 
-- [Unicorn HQ](http://unicorn.bogomips.org) **c**- [(git)](http://bogomips.org/unicorn.git), [:github: mirror](https://github.com/defunkt/unicorn), [:gem:](https://rubygems.org/gems/unicorn) - a HTTP server for rack apps and Unix; workers all run within their own isolated address space and only serve one client at a time for maximum robustness by Eric Wong et al
+- [Unicorn HQ](http://unicorn.bogomips.org) **c**- [(git)](http://bogomips.org/unicorn.git), [:github: mirror](https://github.com/defunkt/unicorn), [:gem:](https://rubygems.org/gems/unicorn) - an HTTP server for rack apps and Unix; workers all run within their own isolated address space and only serve one client at a time for maximum robustness by Eric Wong et al
 
 
 ## Async I/O, Multi-Plexed "Evented" Web Server 
