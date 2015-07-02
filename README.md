@@ -135,7 +135,21 @@ Common options:
 
 ### (r)un - Ruby Standard Library
 
-Starting a super simple HTTP server - uses the builtin WEBrick machinery -  with an one-liner.
+Starting a super simple HTTP server - uses the builtin WEBrick machinery - with an one-liner. Example:
+
+~~~
+$ ruby -run -e httpd .       # . is the DocumentRoot e.g. current working folder
+=> [2016-08-02 19:14:35] INFO  WEBrick::HTTPServer#start: pid=4396 port=80
+~~~
+
+or with a different port and document root e.g.:
+
+~~~
+$ ruby -run -e httpd ./_site -p 5000
+=> [2016-08-02 19:14:35] INFO  WEBrick::HTTPServer#start: pid=4397 port=5000
+~~~
+
+Options include:
 
 ~~~
 ruby -run -e httpd -- [OPTION] DocumentRoot
@@ -148,15 +162,6 @@ ruby -run -e httpd -- [OPTION] DocumentRoot
    --request-timeout=SECOND    request timeout in seconds
    --http-version=VERSION      HTTP version
    -v                          verbose
-~~~
-
-Example:
-
-~~~
-$ ruby -run -e httpd . -p 5000
-
-=> [2016-07-02 19:14:35] INFO  WEBrick 1.3.1
-=> [2015-07-02 19:14:35] INFO  WEBrick::HTTPServer#start: pid=4396 port=80
 ~~~
 
 Source in [`un.rb` :octocat:](https://github.com/ruby/ruby/blob/trunk/lib/un.rb) (search for `def httpd`) e.g.:
@@ -185,6 +190,7 @@ def httpd
   end
 end
 ~~~
+
 
 ## Code Examples
 
