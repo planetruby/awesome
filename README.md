@@ -189,15 +189,14 @@ end
 ## Code Examples
 
 
-### Thin
+### Thin - Hello World - #rack
 
 ~~~
 require 'thin'
 
-
 class SimpleAdapter
   def call(env)
-    body = ["hello!"]
+    body = ["Hello, World!"]
     [
       200,
       { 'Content-Type' => 'text/plain' },
@@ -217,14 +216,14 @@ Thin::Server.start('0.0.0.0', 3000) do
 end
 ~~~
 
-### Goliath
+### Goliath - Hello World
 
 ~~~
 require 'goliath'
 
 class HelloWorld < Goliath::API
   def response(env)
-    [200, {}, "hello world"]
+    [200, {}, "Hello, World!"]
   end
 end
 ~~~
@@ -232,7 +231,7 @@ end
 (Source: [`hello_world.rb`](https://github.com/postrank-labs/goliath/blob/master/examples/hello_world.rb))
 
 
-### Reel
+### Reel - Hello World
 
 ~~~
 require 'reel'
@@ -245,7 +244,7 @@ Reel::Server::HTTP.run(addr, port) do |connection|
   connection.each_request do |request|
     # Ordinarily we'd route the request here, e.g.
     # route request.url
-    request.respond :ok, "hello, world!"
+    request.respond :ok, "Hello, World!"
   end
 
   # Reel takes care of closing the connection for you
@@ -258,7 +257,7 @@ end
 
 
 
-### EventMachine
+### EventMachine - Echo Server
 
 ~~~
 require 'eventmachine'
@@ -285,7 +284,7 @@ EventMachine.run {
 
 
 
-### Celluloid::IO
+### Celluloid::IO - Echo Server
 
 ~~~
 require 'celluloid/io'
