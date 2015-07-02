@@ -50,9 +50,75 @@ Note: :octocat: stands for the GitHub page and :gem: for the RubyGems page.
 
 ## Misc (Web) Server Machines / Building Blocks
 
-[Event Machine HQ](http://rubyeventmachine.com) - [:octocat:](https://github.com/eventmachine/eventmachine), [:gem:](https://rubygems.org/gems/eventmachine) -  a fast, single-threaded engine for arbitrary network communications; wraps all interactions with IP sockets, allowing programs  to focus on coding the network protocols; works for both network servers and clients; by Francis Cianfrocca, Aman Gupta et al
+- [Event Machine HQ](http://rubyeventmachine.com) - [:octocat:](https://github.com/eventmachine/eventmachine), [:gem:](https://rubygems.org/gems/eventmachine) -  a fast, single-threaded engine for arbitrary network communications; wraps all interactions with IP sockets, allowing programs  to focus on coding the network protocols; works for both network servers and clients; by Francis Cianfrocca, Aman Gupta et al
 
-[Celluloid:IO HQ :octocat:](https://github.com/celluloid/celluloid-io), [:gem:](https://rubygems.org/gems/celluloid-io) - evented I/O for celluloid actors; build fast evented programs like you would with EventMachine or Node.js using regular synchronous libraries based on TCPSocket; by Tony Arcieri et al 
+Examples:
+
+~~~
+require 'eventmachine'
+
+module EchoServer
+  def post_init
+    puts "-- someone connected to the echo server!"
+  end
+
+  def receive_data data
+    send_data ">>>you sent: #{data}"
+    close_connection if data =~ /quit/i
+  end
+
+  def unbind
+    puts "-- someone disconnected from the echo server!"
+  end
+end
+
+EventMachine.run {
+  EventMachine.start_server "127.0.0.1", 8081, EchoServer     # Note: This will block current thread.
+}
+~~~
+
+
+- [Celluloid:IO HQ :octocat:](https://github.com/celluloid/celluloid-io), [:gem:](https://rubygems.org/gems/celluloid-io) - evented I/O for celluloid actors; build fast evented programs like you would with EventMachine or Node.js using regular synchronous libraries based on TCPSocket; by Tony Arcieri et al 
+
+Examples:
+
+~~~
+require 'celluloid/io'
+require 'celluloid/autostart'
+
+class EchoServer
+  include Celluloid::IO
+  finalizer :shutdown
+
+  def initialize(host, port)
+    puts "*** Starting echo server on #{host}:#{port}"
+
+    # Since we included Celluloid::IO, we're actually making a
+    # Celluloid::IO::TCPServer here
+    @server = TCPServer.new(host, port)
+    async.run
+  end
+
+  def shutdown
+    @server.close if @server
+  end
+
+  def run
+    loop { async.handle_connection @server.accept }
+  end
+
+  def handle_connection(socket)
+    _, port, host = socket.peeraddr
+    puts "*** Received connection from #{host}:#{port}"
+    loop { socket.write socket.readpartial(4096) }
+  rescue EOFError
+    puts "*** #{host}:#{port} disconnected"
+    socket.close
+  end
+end
+~~~
+
+(Source: [`echo_server.rb`](https://github.com/celluloid/celluloid-io/blob/master/examples/echo_server.rb))
 
 
 ## Tipps & Tricks
@@ -80,7 +146,7 @@ Example:
 $ ruby -run -e httpd . -p 5000
 ~~~
 
-Source in [un.rb :octocat:](https://github.com/ruby/ruby/blob/trunk/lib/un.rb) (search for def httpd) e.g.:
+Source in [`un.rb` :octocat:](https://github.com/ruby/ruby/blob/trunk/lib/un.rb) (search for `def httpd`) e.g.:
 
 ~~~
 def httpd
