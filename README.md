@@ -44,7 +44,7 @@ server.start
 ~~~
 
 
-- [Passenger](https://www.phusionpassenger.com) **c++**  (GitHub: [phusion/passenger](https://github.com/phusion/passenger), gem: [passenger](https://rubygems.org/gems/passenger) _depends on rack_) - also known as "Raptor", mod_rails or mod_rack; a web server w/ a zero-copy architecture, watchdog system and hybrid evented, multi-threaded and multi-process design; by Phusion Inc.
+- [Passenger](https://www.phusionpassenger.com) **c++**  (GitHub: [phusion/passenger](https://github.com/phusion/passenger), gem: [passenger](https://rubygems.org/gems/passenger) _depends on rack_) - also known as "Raptor", mod_rails or mod_rack; a web server w/ a zero-copy architecture, watchdog system and hybrid evented, multi-threaded and multi-process design; by Hongli Lai (Phusion Inc.) et al
 
 - [Puma](http://puma.io) **c, ragel** (GitHub: [puma/puma](https://github.com/puma/puma), gem: [puma](https://rubygems.org/gems/puma) _depends on rack_) - a simple, fast, threaded, and highly concurrent HTTP 1.1 server for rack apps; by Evan Phoenix et al
 
@@ -67,7 +67,7 @@ server.start
 
 - [Event Machine](http://rubyeventmachine.com) **c** (GitHub:  [eventmachine/eventmachine](https://github.com/eventmachine/eventmachine), gem: [eventmachine](https://rubygems.org/gems/eventmachine)) -  a fast, single-threaded engine for arbitrary network communications; wraps all interactions with IP sockets, allowing programs  to focus on coding the network protocols; works for both network servers and clients; by Francis Cianfrocca, Aman Gupta et al
 
-- Celluloid:IO (GitHub: [celluloid/celluloid-io](https://github.com/colluloid/colluloid-io), gem: [celluloid-io](https://rubygems.org/gems/celluloid-io)) - evented I/O for celluloid actors; build fast evented programs like you would with EventMachine or Node.js using regular synchronous libraries based on TCPSocket; by Tony Arcieri et al 
+- Celluloid:IO (GitHub: [celluloid/celluloid-io](https://github.com/celluloid/celluloid-io), gem: [celluloid-io](https://rubygems.org/gems/celluloid-io)) - evented I/O for celluloid actors; build fast evented programs like you would with EventMachine or Node.js using regular synchronous libraries based on TCPSocket; by Tony Arcieri et al 
 
 
 ## Feature Matrix
@@ -114,22 +114,30 @@ $ ruby -run -e httpd ./_site -p 5000
 => [2016-08-02 19:14:35] INFO  WEBrick::HTTPServer#start: pid=4397 port=5000
 ~~~
 
-Options include:
+or to get all options:
 
 ~~~
-ruby -run -e httpd -- [OPTION] DocumentRoot
-
-   --bind-address=ADDR         address to bind
-   --port=NUM                  listening port number
-   --max-clients=MAX           max number of simultaneous clients
-   --temp-dir=DIR              temporary directory
-   --do-not-reverse-lookup     disable reverse lookup
-   --request-timeout=SECOND    request timeout in seconds
-   --http-version=VERSION      HTTP version
-   -v                          verbose
+$ ruby -e "require 'un'; httpd" -- --help
 ~~~
 
-Source in [`un.rb` :octocat:](https://github.com/ruby/ruby/blob/trunk/lib/un.rb) (search for `def httpd`) e.g.:
+resulting in:
+
+~~~
+Run WEBrick HTTP server.
+
+  ruby -run -e httpd -- [OPTION] DocumentRoot
+
+  --bind-address=ADDR         address to bind
+  --port=NUM                  listening port number
+  --max-clients=MAX           max number of simultaneous clients
+  --temp-dir=DIR              temporary directory
+  --do-not-reverse-lookup     disable reverse lookup
+  --request-timeout=SECOND    request timeout in seconds
+  --http-version=VERSION      HTTP version
+  -v                          verbose
+~~~
+
+Source in ruby/ruby/lib/[`un.rb` :octocat:](https://github.com/ruby/ruby/blob/trunk/lib/un.rb) (search for the `httpd` method) e.g.:
 
 ~~~
 def httpd
@@ -159,7 +167,156 @@ end
 
 ## Command Line Tools
 
-### thin
+### Passenger
+
+~~~
+$ passenger -h
+~~~
+
+resulting in:
+
+~~~
+Phusion Passenger Standalone, the easiest way to run web apps.
+
+Available commands:
+
+  passenger start      Start Phusion Passenger Standalone.
+  passenger stop       Stop a Phusion Passenger instance.
+  passenger status     Show the status of a running Phusion Passenger instance.
+~~~
+
+~~~
+$ passenger start --help
+~~~
+
+resulting in:
+
+~~~
+Usage: passenger start [DIRECTORY] [OPTIONS]
+Starts Phusion Passenger Standalone and serve one or more web applications.
+
+Server options:
+    -a, --address HOST               Bind to the given address. Default: 0.0.0.0
+    -p, --port NUMBER                Use the given port number. Default: 3000
+    -S, --socket FILE                Bind to Unix domain socket instead of TCP socket
+        --ssl                        Enable SSL support (Nginx engine only)
+        --ssl-certificate PATH       Specify the SSL certificate path (Nginx engine only)
+        --ssl-certificate-key PATH   Specify the SSL key path
+        --ssl-port PORT              Listen for SSL on this port, while listening for HTTP on the normal port (Nginx engine only)
+    -d, --daemonize                  Daemonize into the background
+        --user USERNAME              User to run as. Ignored unless running as root
+        --log-file FILENAME          Where to write log messages. Default: console, or /dev/null when daemonized
+        --pid-file FILENAME          Where to store the PID file
+        --instance-registry-dir PATH Use the given instance registry directory
+        --data-buffer-dir PATH       Use the given data buffer directory
+
+Application loading options:
+    -e, --environment ENV            Framework environment. Default: development
+        --ruby FILENAME              Executable to use for Ruby apps. Default: /home/gerald/.rvm/gems/ruby-2.1.4/wrappers/ruby (current context)
+    -R, --rackup FILE                Consider application a Ruby app, and use the given rackup file
+        --app-type NAME              Force app to be detected as the given type
+        --startup-file FILENAME      Force given startup file to be used
+        --spawn-method NAME          The spawn method to use. Default: smart
+        --static-files-dir PATH      Specify the static files dir (Nginx engine only)
+        --restart-dir PATH           Specify the restart dir
+        --friendly-error-pages       Turn on friendly error pages
+        --no-friendly-error-pages    Turn off friendly error pages
+        --load-shell-envvars         Load shell startup files before loading application
+        --debugger                   Enable debugger support
+
+Process management options:
+        --max-pool-size NUMBER       Maximum number of application processes. Default: 6
+        --min-instances NUMBER       Minimum number of processes per application. Default: 1
+        --pool-idle-time SECONDS     Maximum time that processes may be idle. Default: 300
+        --max-preloader-idle-time SECONDS  Maximum time that preloader processes may be idle. A value of 0 means that preloader processes never timeout. Default: 300
+        --concurrency-model NAME     The concurrency model to use, either 'process' or 'thread' (Enterprise only). Default: process
+        --thread-count NAME          The number of threads to use when using the 'thread' concurrency model (Enterprise only). Default: 1
+        --rolling-restarts           Enable rolling restarts (Enterprise only)
+        --resist-deployment-errors   Enable deployment error resistance (Enterprise only)
+
+Request handling options:
+        --max-request-time SECONDS   Abort requests that take too much time (Enterprise only)
+        --sticky-sessions            Enable sticky sessions
+        --sticky-sessions-cookie-name NAME   Cookie name to use for sticky sessions. Default: _passenger_route
+        --vary-turbocache-by-cookie NAME     Vary the turbocache by the cookie of the given name
+        --disable-turbocaching       Disable turbocaching
+...
+~~~
+
+
+### Puma
+
+~~~
+$ puma -h
+~~~
+
+resulting in:
+
+~~~
+puma <options> <rackup file>
+    -b, --bind URI                   URI to bind to (tcp://, unix://, ssl://)
+    -C, --config PATH                Load PATH as a config file
+        --control URL                The bind url to use for the control server
+                                     Use 'auto' to use temp unix server
+        --control-token TOKEN        The token to use as authentication for the control server
+    -d, --daemon                     Daemonize the server into the background
+        --debug                      Log lowlevel debugging information
+        --dir DIR                    Change to DIR before starting
+    -e, --environment ENVIRONMENT    The environment to run the Rack app on (default development)
+    -I, --include PATH               Specify $LOAD_PATH directories
+    -p, --port PORT                  Define the TCP port to bind to
+                                     Use -b for more advanced options
+        --pidfile PATH               Use PATH as a pidfile
+        --preload                    Preload the app. Cluster mode only
+        --prune-bundler              Prune out the bundler env if possible
+    -q, --quiet                      Quiet down the output
+    -R, --restart-cmd CMD            The puma command to run during a hot restart
+                                     Default: inferred
+    -S, --state PATH                 Where to store the state details
+    -t, --threads INT                min:max threads to use (default 0:16)
+        --tcp-mode                   Run the app in raw TCP mode instead of HTTP mode
+    -V, --version                    Print the version information
+    -w, --workers COUNT              Activate cluster mode: How many worker processes to create
+        --tag NAME                   Additional text to display in process listing
+    -h, --help                       Show help
+~~~
+
+### Unicorn
+
+~~~
+$ unicorn -h
+~~~
+
+resulting in:
+
+~~~
+Usage: unicorn [ruby options] [unicorn options] [rackup config file]
+Ruby options:
+  -e, --eval LINE          evaluate a LINE of code
+  -d, --debug              set debugging flags (set $DEBUG to true)
+  -w, --warn               turn warnings on for your script
+  -I, --include PATH       specify $LOAD_PATH (may be used more than once)
+  -r, --require LIBRARY    require the library, before executing your script
+unicorn options:
+  -o, --host HOST          listen on HOST (default: 0.0.0.0)
+  -p, --port PORT          use PORT (default: 8080)
+  -E, --env RACK_ENV       use RACK_ENV for defaults (default: development)
+  -N                       do not load middleware implied by RACK_ENV
+      --no-default-middleware
+  -D, --daemonize          run daemonized in the background
+
+  -s, --server SERVER      this flag only exists for compatibility
+  -l {HOST:PORT|PATH},     listen on HOST:PORT or PATH
+      --listen             this may be specified multiple times
+                           (default: 0.0.0.0:8080)
+  -c, --config-file FILE   Unicorn-specific config file
+Common options:
+  -h, --help               Show this message
+  -v, --version            Show version
+~~~
+
+
+### Thin
 
 ~~~
 $ thin -h
@@ -168,7 +325,7 @@ $ thin -h
 resulting in:
 
 ~~~
-Usage: thin [options] start|stop|restart|config
+Usage: thin [options] start|stop|restart|config|install
 
 Server options:
     -a, --address HOST               bind to HOST address (default: 0.0.0.0)
@@ -191,15 +348,34 @@ Adapter options:
     -e, --environment ENV            Framework environment (default: development)
         --prefix PATH                Mount the app under PATH (start with /)
 
+Daemon options:
+    -d, --daemonize                  Run daemonized in the background
+    -l, --log FILE                   File to redirect output (default: /home/gerald/test/log/thin.log)
+    -P, --pid FILE                   File to store PID (default: tmp/pids/thin.pid)
+    -u, --user NAME                  User to run daemon as (use with -g)
+    -g, --group NAME                 Group to run daemon as (use with -u)
+        --tag NAME                   Additional text to display in process listing
+
+Cluster options:
+    -s, --servers NUM                Number of servers to start
+    -o, --only NUM                   Send command to only one server of the cluster
+    -C, --config FILE                Load options from config file
+        --all [DIR]                  Send command to each config files in DIR
+    -O, --onebyone                   Restart the cluster one by one (only works with restart command)
+    -w, --wait NUM                   Maximum wait time for server to be started in seconds (use with -O)
+
 Tuning options:
     -b, --backend CLASS              Backend to use, full classname
     -t, --timeout SEC                Request or command timeout in sec (default: 30)
     -f, --force                      Force the execution of the command
+        --max-conns NUM              Maximum number of open file descriptors (default: 1024)
+                                     Might require sudo to set higher than 1024
         --max-persistent-conns NUM   Maximum number of persistent connections
                                      (default: 100)
         --threaded                   Call the Rack application in threads [experimental]
         --threadpool-size NUM        Sets the size of the EventMachine threadpool.
                                      (default: 20)
+        --no-epoll                   Disable the use of epoll
 
 Common options:
     -r, --require FILE               require the library
