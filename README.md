@@ -6,10 +6,10 @@ A collection of awesome Ruby web servers (single-threaded, multi-threaded, multi
 
 #### _Contributions welcome. Anything missing? Send in a pull request. Thanks._
 
-[Multi-Threaded Web Server]()
-[Simple Single-Threaded Web Server]()
-[Async I/O, Multi-Plexed (Single Event Thread) Web Server]()
-[More / Misc Web Servers]()
+[Multi-Threaded Web Server](#multi-threaded-web-server) •
+[Simple Single-Threaded Web Server](#simple-single-threaded-web-server) •
+[Async I/O, Multi-Plexed (Single Event Thread) Web Server](#async-io-multi-plexed-single-event-thread-web-server) •
+[More / Misc Web Servers](#more--misc-web-servers)
 
 
 Note: :octocat: stands for the GitHub page and :gem: for the RubyGems page.
@@ -20,7 +20,7 @@ Note: :octocat: stands for the GitHub page and :gem: for the RubyGems page.
 - [Passenger HQ](https://www.phusionpassenger.com) - [:octocat:](https://github.com/phusion/passenger), [:gem:](https://rubygems.org/gems/passenger) - also known as "Raptor"; C++ core, zero-copy architecture, watchdog system and 
        hybrid evented, multi-threaded and multi-process design by Phusion Inc.
 
-- [Puma HQ])(http://puma.io) - [:octocat:](https://github.com/puma/puma), [:gem:](https://rubygems.org/gems/puma) - a simple, fast, threaded, and highly concurrent HTTP 1.1 server for rack apps by Evan Phoenix et al
+- [Puma HQ](http://puma.io) - [:octocat:](https://github.com/puma/puma), [:gem:](https://rubygems.org/gems/puma) - a simple, fast, threaded, and highly concurrent HTTP 1.1 server for rack apps by Evan Phoenix et al
 
 
 ## Simple Single-Threaded Web Server
@@ -36,13 +36,14 @@ Note: :octocat: stands for the GitHub page and :gem: for the RubyGems page.
 
 - [Goliath HQ](http://goliath.io) - [:octocat:](https://github.com/postrank-labs/goliath), [:gem:](https://rubygems.org/gems/goliath) - non-blocking (async) web server framework; powered by event machine; uses fibers to untangle the complicated callback-based code into "plain old" linear-execution
 
-- [Reel HQ :octocat:](https://github.com/celluloid/reel) - [:gem:](https://rubygems.org/gems/reel) -  a fast, non-blocking "evented" web server built on Celluloid::IOby Tony Arcieri
+- [Reel HQ :octocat:](https://github.com/celluloid/reel) - [:gem:](https://rubygems.org/gems/reel) -  a fast, non-blocking "evented" web server built on Celluloid::IO; by Tony Arcieri et al
 
 
 ## More / Misc Web Servers
 
 [Event Machine HQ](http://rubyeventmachine.com) - [:octocat:](https://github.com/eventmachine/eventmachine), [:gem:](https://rubygems.org/gems/eventmachine) -  a fast, single-threaded engine for arbitrary network communications; wraps all interactions with IP sockets, allowing programs  to focus on coding the network protocols; works for both network servers and clientsby Francis Cianfrocca, Aman Gupta et al
   
+[Celluloid:IO HQ :octocat:](https://github.com/celluloid/celluloid-io), [:gem:](https://rubygems.org/gems/celluloid-io) - evented I/O for celluloid actors; build fast evented programs like you would with EventMachine or Node.js using regular synchronous libraries based on TCPSocket; by by Tony Arcieri et al 
 
 
 ## Meta
