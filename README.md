@@ -55,6 +55,59 @@ Note: :octocat: stands for the GitHub page and :gem: for the RubyGems page.
 [Celluloid:IO HQ :octocat:](https://github.com/celluloid/celluloid-io), [:gem:](https://rubygems.org/gems/celluloid-io) - evented I/O for celluloid actors; build fast evented programs like you would with EventMachine or Node.js using regular synchronous libraries based on TCPSocket; by Tony Arcieri et al 
 
 
+## Tipps & Tricks
+
+### (r)un - Ruby Standard Library
+
+Starting a super simple HTTP server - uses the builtin WEBrick machinery -  with an one-liner.
+
+~~~
+ruby -run -e httpd -- [OPTION] DocumentRoot
+
+   --bind-address=ADDR         address to bind
+   --port=NUM                  listening port number
+   --max-clients=MAX           max number of simultaneous clients
+   --temp-dir=DIR              temporary directory
+   --do-not-reverse-lookup     disable reverse lookup
+   --request-timeout=SECOND    request timeout in seconds
+   --http-version=VERSION      HTTP version
+   -v                          verbose
+~~~
+
+Example:
+
+~~~
+$ ruby -run -e httpd . -p 5000
+~~~
+
+Source in [un.rb :octocat:](https://github.com/ruby/ruby/blob/trunk/lib/un.rb) (search for def httpd) e.g.:
+
+~~~
+def httpd
+  setup("", "BindAddress=ADDR", "Port=PORT", "MaxClients=NUM", "TempDir=DIR",
+        "DoNotReverseLookup", "RequestTimeout=SECOND", "HTTPVersion=VERSION") do
+    |argv, options|
+    require 'webrick'
+    opt = options[:RequestTimeout] and options[:RequestTimeout] = opt.to_i
+    [:Port, :MaxClients].each do |name|
+      opt = options[name] and (options[name] = Integer(opt)) rescue nil
+    end
+    options[:Port] ||= 8080     # HTTP Alternate
+    options[:DocumentRoot] = argv.shift || '.'
+    s = WEBrick::HTTPServer.new(options)
+    shut = proc {s.shutdown}
+    siglist = %w"TERM QUIT"
+    siglist.concat(%w"HUP INT") if STDIN.tty?
+    siglist &= Signal.list.keys
+    siglist.each do |sig|
+      Signal.trap(sig, shut)
+    end
+    s.start
+  end
+end
+~~~
+
+
 ## Meta
 
 **License**
