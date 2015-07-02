@@ -18,8 +18,8 @@ A collection of awesome Ruby web servers (single-threaded, multi-threaded, multi
 [Multi-Threaded Web Server](#multi-threaded-web-server) •
 [Simple Single-Threaded Web Server](#simple-single-threaded-web-server) •
 [Async I/O, Multi-Plexed (Single Event Thread) Web Server](#async-io-multi-plexed-single-event-thread-web-server) •
-[More Web Servers](#more-web-servers)
-[Misc (Web) Server Machines](#mics-web-server-machines)
+[More Web Servers](#more-web-servers) •
+[Misc (Web) Server Machines / Building Blocks](#mics-web-server-machines)
 
 Note: :octocat: stands for the GitHub page and :gem: for the RubyGems page.
 
@@ -48,7 +48,7 @@ Note: :octocat: stands for the GitHub page and :gem: for the RubyGems page.
 - [Reel HQ :octocat:](https://github.com/celluloid/reel) - [:gem:](https://rubygems.org/gems/reel) -  a fast, non-blocking "evented" web server built on Celluloid::IO; by Tony Arcieri et al
 
 
-## Misc (Web) Server Machines
+## Misc (Web) Server Machines / Building Blocks
 
 [Event Machine HQ](http://rubyeventmachine.com) - [:octocat:](https://github.com/eventmachine/eventmachine), [:gem:](https://rubygems.org/gems/eventmachine) -  a fast, single-threaded engine for arbitrary network communications; wraps all interactions with IP sockets, allowing programs  to focus on coding the network protocols; works for both network servers and clients; by Francis Cianfrocca, Aman Gupta et al
 
