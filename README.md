@@ -22,13 +22,11 @@ A collection of awesome Ruby web servers (single-threaded, multi-threaded, multi
 [More Web Servers](#more-web-servers) •
 [Misc (Web) Server Machines / Building Blocks](#mics-web-server-machines)
 
-Note: :octocat: stands for the GitHub page and :gem: for the RubyGems page.
-
 
 
 ## Simple Single-Threaded Web Server
 
-- [WEBrick :octocat:](https://github.com/ruby/ruby/blob/trunk/lib/webrick.rb) - a HTTP server toolkit; ships with the standard library (stdlib); lets you use HTTP(S) servers, proxy servers, and virtual-host servers; by Masayoshi Takahashi, Yuuzou Gotou et al
+- WEBrick (GitHub: ruby/ruby/lib/[webrick.rb](https://github.com/ruby/ruby/blob/trunk/lib/webrick.rb)+[webrick/**](https://github.com/ruby/ruby/tree/trunk/lib/webrick)) - a HTTP server toolkit; ships with the standard library (stdlib); lets you use HTTP(S) servers, proxy servers, and virtual-host servers; by Masayoshi Takahashi, Yuuzou Gotou et al
 
 ~~~
 require 'webrick'
@@ -41,30 +39,30 @@ server.start
 
 ## Multi-Threaded Web Server
 
-- [Passenger HQ](https://www.phusionpassenger.com) **c++** - [:octocat:](https://github.com/phusion/passenger), [:gem:](https://rubygems.org/gems/passenger) - also known as "Raptor"; C++ core, zero-copy architecture, watchdog system and hybrid evented, multi-threaded and multi-process design by Phusion Inc.
+- [Passenger](https://www.phusionpassenger.com) **c++**  (GitHub: [phusion/passenger](https://github.com/phusion/passenger), gem: [passenger](https://rubygems.org/gems/passenger)) - also known as "Raptor, mod_rack, mod_rails"; a web server w/ a zero-copy architecture, watchdog system and hybrid evented, multi-threaded and multi-process design; by Phusion Inc.
 
-- [Puma HQ](http://puma.io) **c, ragel** - [:octocat:](https://github.com/puma/puma), [:gem:](https://rubygems.org/gems/puma) - a simple, fast, threaded, and highly concurrent HTTP 1.1 server for rack apps by Evan Phoenix et al
+- [Puma](http://puma.io) **c, ragel** (GitHub: [puma/puma](https://github.com/puma/puma), gem: [puma](https://rubygems.org/gems/puma) _depends on rack_) - a simple, fast, threaded, and highly concurrent HTTP 1.1 server for rack apps; by Evan Phoenix et al
 
 
 ## Multi-Process Web Server
 
-- [Unicorn HQ](http://unicorn.bogomips.org) **c**- [(git)](http://bogomips.org/unicorn.git), [:github: mirror](https://github.com/defunkt/unicorn), [:gem:](https://rubygems.org/gems/unicorn) - a HTTP server for rack apps and Unix; workers all run within their own isolated address space and only serve one client at a time for maximum robustness by Eric Wong et al
+- [Unicorn](http://unicorn.bogomips.org) **c** (git: [unicorn](http://bogomips.org/unicorn.git), GitHub mirror: [defunkt/unicorn](https://github.com/defunkt/unicorn), gem:[unicorn](https://rubygems.org/gems/unicorn) _depends on_ ) - a HTTP server for rack apps and Unix; workers all run within their own isolated address space and only serve one client at a time for maximum robustness; by Eric Wong et al
 
 
 ## Async I/O, Multi-Plexed "Evented" Web Server 
 
-- [Thin HQ](http://code.macournoyer.com/thin) **c, ragel** - [:octocat:](https://github.com/macournoyer/thin), [:gem:](https://rubygems.org/gems/thin) - a simple and fast web server; powered by event machine by Marc-André Cournoyer et al
+- [Thin](http://code.macournoyer.com/thin) **c, ragel** (GitHub: [macournoyer/thin](https://github.com/macournoyer/thin), gem: [thin](https://rubygems.org/gems/thin) _depends on_ ) - a simple and fast web server; powered by event machine by Marc-André Cournoyer et al
 
-- [Goliath HQ](http://goliath.io) - [:octocat:](https://github.com/postrank-labs/goliath), [:gem:](https://rubygems.org/gems/goliath) - non-blocking (async) web server framework; powered by event machine; uses fibers to untangle the complicated callback-based code into "plain old" linear-execution
+- [Goliath](http://goliath.io) (GitHub: [postrank-labs/goliath](https://github.com/postrank-labs/goliath), gem: [goliath](https://rubygems.org/gems/goliath) _depends on_ ) - non-blocking (async) web server framework; powered by event machine; uses fibers to untangle the complicated callback-based code into "plain old" linear-execution
 
-- [Reel HQ :octocat:](https://github.com/celluloid/reel) - [:gem:](https://rubygems.org/gems/reel) -  a fast, non-blocking "evented" web server built on Celluloid::IO; by Tony Arcieri et al
+- Reel (GitHub: [celluloid/reel](https://github.com/celluloid/reel), gem: [reel](https://rubygems.org/gems/reel) _depends on_ ) -  a fast, non-blocking "evented" web server built on Celluloid::IO; by Tony Arcieri et al
 
 
 ## Misc (Web) Server Machines / Building Blocks
 
-- [Event Machine HQ](http://rubyeventmachine.com) **c** - [:octocat:](https://github.com/eventmachine/eventmachine), [:gem:](https://rubygems.org/gems/eventmachine) -  a fast, single-threaded engine for arbitrary network communications; wraps all interactions with IP sockets, allowing programs  to focus on coding the network protocols; works for both network servers and clients; by Francis Cianfrocca, Aman Gupta et al
+- [Event Machine](http://rubyeventmachine.com) **c** (GitHub:  [eventmachine/eventmachine](https://github.com/eventmachine/eventmachine), gem: [eventmachine](https://rubygems.org/gems/eventmachine) _depends on_ ) -  a fast, single-threaded engine for arbitrary network communications; wraps all interactions with IP sockets, allowing programs  to focus on coding the network protocols; works for both network servers and clients; by Francis Cianfrocca, Aman Gupta et al
 
-- [Celluloid:IO HQ :octocat:](https://github.com/celluloid/celluloid-io), [:gem:](https://rubygems.org/gems/celluloid-io) - evented I/O for celluloid actors; build fast evented programs like you would with EventMachine or Node.js using regular synchronous libraries based on TCPSocket; by Tony Arcieri et al 
+- Celluloid:IO (GitHub: [celluloid/celluloid-io](https://github.com/colluloid/colluloid-io), gem: [celluloid-io](https://rubygems.org/gems/celluloid-io) _depends on_ ) - evented I/O for celluloid actors; build fast evented programs like you would with EventMachine or Node.js using regular synchronous libraries based on TCPSocket; by Tony Arcieri et al 
 
 
 ## Feature Matrix
@@ -72,7 +70,7 @@ server.start
 | Server     | Rack   |  Multi-Threaded | Multi-Fiber | Multi-Process | Evented | Watchdog | C Extension |
 | :--------  | :----: | :-------------: | :---------: | :-----------: | :-----: | :------: | :---------: |
 | Passenger  |  Yes   |    Yes          |   x         |   Yes         |   Yes   |  Yes     |  Yes        |
-| Puma       |  Yes   |    Yes          |   x         |   x           |   ??    |   x      |  Yes        |
+| Puma       |  Yes   |    Yes          |   x         |   x           |   x     |   x      |  Yes        |
 | Unicorn    |  Yes   |    -x-          |   x         |   Yes         |  ??     |  Yes     |  Yes        | 
 | WEBRick    |  Yes   |    -x-          |   x         |   x           |  x      |   x      |  x          |
 | Thin       |  Yes   |    Yes          |   x         |   x           |  Yes    |   x      |  Yes        |
