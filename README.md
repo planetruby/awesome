@@ -91,7 +91,7 @@ server.start
 | Thin       |  Yes   | Yes     |  x    |  Yes          |   x         |   x           |  Yes    |   x      |  Yes        |
 | Goliath    |  Yes   | Yes     |  x    |  x           |  Yes        |   x           |  Yes    |   x      |  Yes        |
 | Reel       |  x     | Yes     |  x    |  ??           |   x         |   x           |  Yes    |   x      |  ??
-| HTTP-2     |  ??    | Yes     | Yes   |  ??           |   x         |   x           |  Yes    |   x      |  x |
+| HTTP-2     |  ??    |  x      | Yes   |  ??           |   x         |   x           |  Yes    |   x      |  x |
 
 
 (Note: Thin, Goliath, ... using EventMachine - ; Reel, ... using Celluloid:IO for evented, non-blocking async I/O)
