@@ -78,16 +78,16 @@ server.start
 
 ## Feature Matrix
 
-| Server     | Rack   | HTTP/2 | Multi-Threaded | Multi-Fiber | Multi-Process | Evented | Watchdog | C Extension |
-| :--------  | :----: | :----: | :-------------: | :---------: | :-----------: | :-----: | :------: | :---------: |
-| WEBRick    |  Yes   |   x    |   Yes          |   x         |   x           |  x      |   x      |  x          |
-| Passenger  |  Yes   |  ??    |  Yes          |   x         |   Yes         |   Yes   |  Yes     |  Yes        |
-| Puma       |  Yes   |   x    |  Yes          |   x         |   x           |   x     |   x      |  Yes        |
-| Unicorn    |  Yes   |   x    |  x           |   x         |   Yes         |   Yes   |  Yes     |  Yes        | 
-| Thin       |  Yes   |   x    |  Yes          |   x         |   x           |  Yes    |   x      |  Yes        |
-| Goliath    |  Yes   |   x    |  x           |  Yes        |   x           |  Yes    |   x      |  Yes        |
-| Reel       |  x     |   x    |  ??           |   x         |   x           |  Yes    |   x      |  ??
-| HTTP-2     |  ??    |  Yes   |  ??           |   x         |   x           |  Yes    |   x      |  x |
+| Server     | Rack   | HTTP/1.1 |  HTTP/2 | Multi-Threaded | Multi-Fiber | Multi-Process | Evented | Watchdog | C Extension |
+| :--------  | :----: |:------: | :----: | :-------------: | :---------: | :-----------: | :-----: | :------: | :---------: |
+| WEBRick    |  Yes   | Yes     |  x     |   Yes          |   x         |   x           |  x      |   x      |  x          |
+| Passenger  |  Yes   | Yes     |  ??    |  Yes          |   x         |   Yes         |   Yes   |  Yes     |  Yes        |
+| Puma       |  Yes   | Yes     |  x    |  Yes          |   x         |   x           |   x     |   x      |  Yes        |
+| Unicorn    |  Yes   | Yes     |  x    |  x           |   x         |   Yes         |   Yes   |  Yes     |  Yes        | 
+| Thin       |  Yes   | Yes     |  x    |  Yes          |   x         |   x           |  Yes    |   x      |  Yes        |
+| Goliath    |  Yes   | Yes     |  x    |  x           |  Yes        |   x           |  Yes    |   x      |  Yes        |
+| Reel       |  x     | Yes     |  x    |  ??           |   x         |   x           |  Yes    |   x      |  ??
+| HTTP-2     |  ??    | Yes     | Yes   |  ??           |   x         |   x           |  Yes    |   x      |  x |
 
 
 (Note: Thin, Goliath, ... using EventMachine - ; Reel, ... using Celluloid:IO for evented, non-blocking async I/O)
