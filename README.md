@@ -412,12 +412,18 @@ Common options:
 | SSL       | Secure Sockets Layer  |
 | TCP       | Transmission Control Protocol  |
 | URI       | Uniform Resource Identifier  |
-| URL       | Uniform Resource Locator     |
+| URL        | Uniform Resource Locator     |
+
+More
+
+| Abbrev    |       |
+|:--------  | :---- |
+| B.V. or BV | Besloten Venootschap  [nl]  |
 
 
 ## Thanks
 
-Michael Dippery • Eric Wong
+Michael Dippery • Hongli Lai • Eric Wong
 
 
 ## Meta
