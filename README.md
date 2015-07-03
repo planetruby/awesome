@@ -45,7 +45,7 @@ server.start
 ~~~
 
 
-- [Passenger](https://www.phusionpassenger.com) **c++**  (GitHub: [phusion/passenger](https://github.com/phusion/passenger), gem: [passenger](https://rubygems.org/gems/passenger) _depends on rack_) - also known as "Raptor", mod_rails or mod_rack; a web server w/ a zero-copy architecture, watchdog system and hybrid evented, multi-threaded and multi-process design; by Hongli Lai (Phusion Inc.) et al
+- [Passenger](https://www.phusionpassenger.com) **c++**  (GitHub: [phusion/passenger](https://github.com/phusion/passenger), gem: [passenger](https://rubygems.org/gems/passenger) _depends on rack_) - also known as "Raptor", mod_rails or mod_rack; a web server w/ a zero-copy architecture, watchdog system and hybrid evented, multi-threaded and multi-process design; by Hongli Lai (Phusion B.V.) et al
 
 - [Puma](http://puma.io) **c, ragel** (GitHub: [puma/puma](https://github.com/puma/puma), gem: [puma](https://rubygems.org/gems/puma) _depends on rack_) - a simple, fast, threaded, and highly concurrent HTTP 1.1 server for rack apps; by Evan Phoenix et al
 
