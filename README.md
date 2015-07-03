@@ -34,7 +34,7 @@ A collection of awesome Ruby web servers (single-threaded, multi-threaded, multi
 
 ## Multi-Threaded Web Server
 
-- WEBrick (GitHub: ruby/ruby/lib/[webrick.rb](https://github.com/ruby/ruby/blob/trunk/lib/webrick.rb)+[webrick/**](https://github.com/ruby/ruby/tree/trunk/lib/webrick)) - a HTTP server toolkit; ships with the standard library (stdlib); lets you use HTTP(S) servers, proxy servers, and virtual-host servers; by Masayoshi Takahashi, Yuuzou Gotou et al
+- WEBrick (GitHub: ruby/ruby/lib/[webrick.rb](https://github.com/ruby/ruby/blob/trunk/lib/webrick.rb)+[webrick/**](https://github.com/ruby/ruby/tree/trunk/lib/webrick)) - an HTTP server toolkit; ships with the standard library (stdlib); lets you use HTTP(S) servers, proxy servers, and virtual-host servers; by Masayoshi Takahashi, Yuuzou Gotou et al
 
 ~~~
 require 'webrick'
@@ -52,7 +52,7 @@ server.start
 
 ## Multi-Process Web Server
 
-- [Unicorn](http://unicorn.bogomips.org) **c** (git: [unicorn](http://bogomips.org/unicorn.git), GitHub mirror: [defunkt/unicorn](https://github.com/defunkt/unicorn), gem:[unicorn](https://rubygems.org/gems/unicorn) _depends on rack, kgio_) - a HTTP server for rack apps and Unix; workers all run within their own isolated address space and only serve one client at a time for maximum robustness; by Eric Wong et al
+- [Unicorn](http://unicorn.bogomips.org) **c** (git: [unicorn](http://bogomips.org/unicorn.git), GitHub mirror: [defunkt/unicorn](https://github.com/defunkt/unicorn), gem:[unicorn](https://rubygems.org/gems/unicorn) _depends on rack, kgio_) - an HTTP server for rack apps and Unix; workers all run within their own isolated address space and only serve one client at a time for maximum robustness; by Eric Wong et al
 
 
 ## Async I/O, Multiplexed "Evented" Web Server 
@@ -392,6 +392,19 @@ Common options:
     -h, --help                       Show this message
     -v, --version                    Show version
 ~~~
+
+## Glossary / Abbreviations
+
+- HTTP   => Hypertext Transfer Protocol
+- HTTPD  => HTTP Daemon
+- IP     => Internet Protocol
+- TCP    => Transmission Control Protocol
+- SSL    => Secure Sockets Layer
+
+
+## Thanks
+
+Michael Dippery • Eric Wong
 
 
 ## Meta
