@@ -401,14 +401,16 @@ Common options:
 
 | Abbrev    |       |
 |:--------  | :---- |
-| HTTP      | Hypertext Transfer Protocol  |
-| HTTPS     | HTTP Secure or HTTP over SSL |
-| HTTPD     | HTTP Daemon  |
-| URI       | Uniform Resource Identifier  |
-| URL       | Uniform Resource Locator     |
-| IP        | Internet Protocol  |
-| TCP       | Transmission Control Protocol  |
-| SSL       | Secure Sockets Layer  |
+| HTTP      | **H**yper**T**ext **T**ransfer **P**rotocol  |
+| HTTPD     | **HTTP D**aemon  |
+| HTTPS     | **HTTP S**ecure or **HTTP** over **S**SL |
+| I/O       | **I**nput/**O**utput       |
+| IP        | **I**nternet **P**rotocol  |
+| PID       | **P**rocess **ID**entifier    |
+| SSL       | **S**ecure **S**ockets **L**ayer  |
+| TCP       | **T**ransmission **C**ontrol **P**rotocol  |
+| URI       | **U**niform **R**esource **I**dentifier  |
+| URL       | **U**niform **R**esource **L**ocator     |
 
 
 ## Thanks
