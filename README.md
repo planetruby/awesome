@@ -109,6 +109,60 @@ Todo: What features to add?
 
 ## Tips & Tricks
 
+### Do It Yourself (DIY) - A Simple HTTP Server From Scratch
+
+_HTTP - just a few lines of plain text describing each request and response sent over a TCP socket_ 
+
+Example: HTTP Request `/index.html` (type in your browser `http://localhost/index.html`)
+
+~~~
+GET /index.html HTTP/1.1
+Host: localhost
+~~~
+
+Example: HTTP Response `/index.html`
+
+~~~
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Length: 39
+
+<html>
+<h1>Hello, World!</h1>
+</html>
+~~~
+
+Example: `httpd.rb`
+
+~~~
+require 'socket'
+server = TCPServer.new 80
+
+loop do
+  # step 1) accept incoming connection
+  socket = server.accept
+
+  # step 2) print the request headers (separated by a blank line e.g. \r\n)
+  puts line = socket.readline  until line == "\r\n"
+
+  # step 3) send response
+
+  html = "<html>\r\n"+
+         "<h1>Hello, World!</h1>\r\n"+
+         "</html>"
+  
+  socket.write "HTTP/1.1 200 OK\r\n" +
+               "Content-Type: text/html; charset=utf-8\r\n" +
+               "Content-Length: #{html.bytesize}\r\n"
+
+  socket.write "\r\n"  # write a blank line to separate headers from the html doc
+  socket.write html    # write out the html doc
+
+  # step 4) close the socket, terminating the connection
+  socket.close
+end
+~~~
+
 ###  HTTP Server One-Liner w/ (r)un Ruby Standard Library
 
 Starting a super simple HTTP server - uses the builtin WEBrick machinery - with an one-liner. Example:
@@ -172,61 +226,6 @@ def httpd
     end
     s.start
   end
-end
-~~~
-
-
-### Do It Yourself (DIY) - A Simple HTTP Server From Scratch
-
-_HTTP - just a few lines of plain text describing each request and response sent over a TCP socket_ 
-
-Example: HTTP Request `/index.html` (type in your browser `http://localhost/index.html`)
-
-~~~
-GET /index.html HTTP/1.1
-Host: localhost
-~~~
-
-Example: HTTP Response `/index.html`
-
-~~~
-HTTP/1.1 200 OK
-Content-Type: text/html; charset=utf-8
-Content-Length: 39
-
-<html>
-<h1>Hello, World!</h1>
-</html>
-~~~
-
-Example: `httpd.rb`
-
-~~~
-require 'socket'
-server = TCPServer.new 80
-
-loop do
-  # step 1) accept incoming connection
-  socket = server.accept
-
-  # step 2) print the request headers (separated by a blank line e.g. \r\n)
-  puts line = socket.readline  until line == "\r\n"
-
-  # step 3) send respone
-
-  html = "<html>\r\n"+
-         "<h1>Hello, World!</h1>\r\n"+
-         "</html>"
-  
-  socket.write "HTTP/1.1 200 OK\r\n" +
-               "Content-Type: text/html; charset=utf-8\r\n" +
-               "Content-Length: #{html.bytesize}\r\n"
-
-  socket.write "\r\n"  # write a blank line to separate headers from the html doc
-  socket.write html    # write out the html doc
-
-  # step 4) close the socket, terminating the connection
-  socket.close
 end
 ~~~
 
