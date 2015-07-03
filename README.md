@@ -13,6 +13,13 @@ Awesome Series @ Planet Ruby
 
 A collection of awesome Ruby web servers (single-threaded, multi-threaded, multiplexed, etc.)
 
+---
+
+[ANNOUNCEMENT] Looking for awesome Ruby Gems? See the [Ruby Gems of the Week Series @ Planet Ruby](http://planetruby.github.io/gems).
+
+---
+
+
 #### _Contributions welcome. Anything missing? Send in a pull request. Thanks._
 
 <!--
