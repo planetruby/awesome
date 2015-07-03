@@ -49,6 +49,10 @@ server.start
 
 - [Puma](http://puma.io) **c, ragel** (GitHub: [puma/puma](https://github.com/puma/puma), gem: [puma](https://rubygems.org/gems/puma) _depends on rack_) - a simple, fast, threaded, and highly concurrent HTTP 1.1 server for rack apps; by Evan Phoenix et al
 
+- [yahns](http://yahns.yhbt.net/README) 
+(gem: [yahns](https://rubygems.org/gems/yahns), git clone: yhbt.net/yahns) - a multi-threaded, (optionally) multi-process, internally async (no public async API, yet, just synchronous Rack 1.x), supports Rack streaming and more;  by Eric Wong et al
+
+
 
 ## Multi-Process Web Server
 
