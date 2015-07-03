@@ -402,7 +402,10 @@ Common options:
 | Abbrev    |       |
 |:--------  | :---- |
 | HTTP      | Hypertext Transfer Protocol  |
+| HTTPS     | HTTP Secure or HTTP over SSL |
 | HTTPD     | HTTP Daemon  |
+| URI       | Uniform Resource Identifier  |
+| URL       | Uniform Resource Locator     |
 | IP        | Internet Protocol  |
 | TCP       | Transmission Control Protocol  |
 | SSL       | Secure Sockets Layer  |
