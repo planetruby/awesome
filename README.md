@@ -399,11 +399,13 @@ Common options:
 
 ## Glossary / Abbreviations
 
-- HTTP   => Hypertext Transfer Protocol
-- HTTPD  => HTTP Daemon
-- IP     => Internet Protocol
-- TCP    => Transmission Control Protocol
-- SSL    => Secure Sockets Layer
+| Abbrev    |       |
+|:--------  | :---- |
+| HTTP      | Hypertext Transfer Protocol  |
+| HTTPD     | HTTP Daemon  |
+| IP        | Internet Protocol  |
+| TCP       | Transmission Control Protocol  |
+| SSL       | Secure Sockets Layer  |
 
 
 ## Thanks
