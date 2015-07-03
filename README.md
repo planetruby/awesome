@@ -401,16 +401,18 @@ Common options:
 
 | Abbrev    |       |
 |:--------  | :---- |
-| HTTP      | **H**yper**T**ext **T**ransfer **P**rotocol  |
-| HTTPD     | **HTTP D**aemon  |
-| HTTPS     | **HTTP S**ecure or **HTTP** over **S**SL |
-| I/O       | **I**nput/**O**utput       |
-| IP        | **I**nternet **P**rotocol  |
-| PID       | **P**rocess **ID**entifier    |
-| SSL       | **S**ecure **S**ockets **L**ayer  |
-| TCP       | **T**ransmission **C**ontrol **P**rotocol  |
-| URI       | **U**niform **R**esource **I**dentifier  |
-| URL       | **U**niform **R**esource **L**ocator     |
+| C         | C Programming Language  |
+| C++       | C++ Programming Language  |
+| HTTP      | Hypertext Transfer Protocol  |
+| HTTPD     | HTTP Daemon  |
+| HTTPS     | HTTP Secure or HTTP over SSL |
+| IO or I/O | Input/Output       |
+| IP        | Internet Protocol  |
+| PID       | Process Identifier    |
+| SSL       | Secure Sockets Layer  |
+| TCP       | Transmission Control Protocol  |
+| URI       | Uniform Resource Identifier  |
+| URL       | Uniform Resource Locator     |
 
 
 ## Thanks
