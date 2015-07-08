@@ -42,7 +42,9 @@ A collection of awesome Ruby web servers (single-threaded, multi-threaded, multi
 ## Multi-Threaded Web Server
 
 
-## WEBrick -  #_multi-threaded_
+## WEBrick 
+
+_multi-threaded_
 
 GitHub: ruby/ruby/lib/[webrick.rb](https://github.com/ruby/ruby/blob/trunk/lib/webrick.rb)+[webrick/**](https://github.com/ruby/ruby/tree/trunk/lib/webrick) - an HTTP server toolkit; ships with the standard library (stdlib); lets you use HTTP(S) servers, proxy servers, and virtual-host servers; by Masayoshi Takahashi, Yuuzou Gotou et al
 
@@ -57,28 +59,38 @@ server.start
 Ruby - Yes / Rubinius - Yes /  Java - Yes
 
 
-## Passenger **c++**  -  #_multi-threaded_, _evented_, _multi-process_, _watchdog_
+## Passenger 
 
-[phusionpassenger.com](https://www.phusionpassenger.com), GitHub: [phusion/passenger](https://github.com/phusion/passenger), gem: [passenger](https://rubygems.org/gems/passenger) _depends on rack_- also known as "Raptor", mod_rails or mod_rack; a web server w/ a zero-copy architecture, watchdog system and hybrid evented, multi-threaded and multi-process design; by Hongli Lai (Phusion B.V.) et al
+**c++** -  _multi-threaded_, _evented_, _multi-process_, _watchdog_
+
+web: [phusionpassenger.com](https://www.phusionpassenger.com), GitHub: [phusion/passenger](https://github.com/phusion/passenger), gem: [passenger](https://rubygems.org/gems/passenger) _depends on rack_- also known as "Raptor", mod_rails or mod_rack; a web server w/ a zero-copy architecture, watchdog system and hybrid evented, multi-threaded and multi-process design; by Hongli Lai (Phusion B.V.) et al
 
 Ruby - Yes (Recommended)  / Rubinius - ?? / Java - x
 
 
-- [Puma](http://puma.io) **c, ragel** (GitHub: [puma/puma](https://github.com/puma/puma), gem: [puma](https://rubygems.org/gems/puma) _depends on rack_) - a simple, fast, threaded, and highly concurrent HTTP 1.1 server for rack apps; by Evan Phoenix et al
+## Puma
+
+**c, ragel**  - _multi-threaded_
+
+web: [puma.io](http://puma.io), GitHub: [puma/puma](https://github.com/puma/puma), gem: [puma](https://rubygems.org/gems/puma) _depends on rack_ - a simple, fast, threaded, and highly concurrent HTTP 1.1 server for rack apps; by Evan Phoenix et al
 
 Ruby - Yes (*) / Rubyinius - Yes (Recommended) /  Java- Yes (Recommended)
 
 (*) GIL (Global Interpreter Lock) in (C)Ruby "blocks" higher multi-threaded throughput
 
 
-- [yahns](http://yahns.yhbt.net/README) 
-(git clone: yhbt.net/yahns, gem: [yahns](https://rubygems.org/gems/yahns)) - a multi-threaded, (optionally) multi-process, internally async (no public async API, yet, just synchronous Rack 1.x), supports Rack streaming and more;  by Eric Wong et al
+## yahns
+
+_multi-threaded_
+
+web: [yahns.yhbt.net](http://yahns.yhbt.net/README), git clone: [yhbt.net/yahns](git://yhbt.net/yahns.git), gem: [yahns](https://rubygems.org/gems/yahns)) - a multi-threaded, (optionally) multi-process, internally async (no public async API, yet, just synchronous Rack 1.x), supports Rack streaming and more;  by Eric Wong et al
 
 
+## Unicorn
 
-## Multi-Process Web Server
+**c** - _multi-process_
 
-- [Unicorn](http://unicorn.bogomips.org) **c** (git: [unicorn](http://bogomips.org/unicorn.git), GitHub mirror: [defunkt/unicorn](https://github.com/defunkt/unicorn), gem:[unicorn](https://rubygems.org/gems/unicorn) _depends on rack, kgio_) - an HTTP server for rack apps and Unix; workers all run within their own isolated address space and only serve one client at a time for maximum robustness; by Eric Wong et al
+web: [unicorn.bogomips.org](http://unicorn.bogomips.org), git: [unicorn](http://bogomips.org/unicorn.git), GitHub mirror: [defunkt/unicorn](https://github.com/defunkt/unicorn), gem: [unicorn](https://rubygems.org/gems/unicorn) _depends on rack, kgio_ - an HTTP server for rack apps and Unix; workers all run within their own isolated address space and only serve one client at a time for maximum robustness; by Eric Wong et al
 
 Ruby - Yes (Recommended)  / Rubinius - ?? / Java - ??
 
