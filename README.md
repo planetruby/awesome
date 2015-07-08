@@ -71,7 +71,7 @@ Ruby - Yes (Recommended)  / Rubinius - ?? / Java - x
 
 ### Puma
 
-**c, ragel**  - _multi-threaded_
+**c, ragel**  - _multi-threaded_, _multi-process_
 
 a simple, fast, threaded, and highly concurrent HTTP 1.1 server for rack apps; by Evan Phoenix et al
 
@@ -566,7 +566,7 @@ More
 
 ## Thanks
 
-Michael Dippery • Hongli Lai • Eric Wong
+Michael Dippery • Uwe Kubosch • Hongli Lai • Eric Wong
 
 
 ## Meta
