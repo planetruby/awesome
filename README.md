@@ -43,10 +43,11 @@ A collection of awesome Ruby web servers (single-threaded, multi-threaded, multi
 
 ### WEBrick
 
-_multi-threaded_  -- (GitHub: ruby/ruby/lib/[webrick.rb](https://github.com/ruby/ruby/blob/trunk/lib/webrick.rb)+[webrick/**](https://github.com/ruby/ruby/tree/trunk/lib/webrick))  
+_multi-threaded_  
 
 an HTTP server toolkit; ships with the standard library (stdlib); lets you use HTTP(S) servers, proxy servers, and virtual-host servers; by Masayoshi Takahashi, Yuuzou Gotou et al
 
+(GitHub: ruby/ruby/lib/[webrick.rb](https://github.com/ruby/ruby/blob/trunk/lib/webrick.rb)+[webrick/**](https://github.com/ruby/ruby/tree/trunk/lib/webrick))  
 
 ~~~
 require 'webrick'
@@ -61,22 +62,27 @@ Ruby - Yes / Rubinius - Yes /  Java - Yes
 
 ### Passenger
 
-**c++** - _multi-threaded_, _evented_, _multi-process_, _watchdog_ -- (web: [phusionpassenger.com](https://www.phusionpassenger.com), GitHub: [phusion/passenger](https://github.com/phusion/passenger), gem: [passenger](https://rubygems.org/gems/passenger) _depends on rack_)
+**c++** - _multi-threaded_, _evented_, _multi-process_, _watchdog_
 
 also known as "Raptor", mod_rails or mod_rack; a web server w/ a zero-copy architecture, watchdog system and hybrid evented, multi-threaded and multi-process design; by Hongli Lai (Phusion B.V.) et al
+
+(web: [phusionpassenger.com](https://www.phusionpassenger.com), GitHub: [phusion/passenger](https://github.com/phusion/passenger), gem: [passenger](https://rubygems.org/gems/passenger) _depends on rack_)
 
 Ruby - Yes (Recommended)  / Rubinius - ?? / Java - x
 
 
+### Puma
 
+**c, ragel**  - _multi-threaded_
 
-**Puma** (web: [puma.io](http://puma.io), GitHub: [puma/puma](https://github.com/puma/puma), gem: [puma](https://rubygems.org/gems/puma) _depends on rack_) - a simple, fast, threaded, and highly concurrent HTTP 1.1 server for rack apps; by Evan Phoenix et al
+a simple, fast, threaded, and highly concurrent HTTP 1.1 server for rack apps; by Evan Phoenix et al
+
+web: [puma.io](http://puma.io), GitHub: [puma/puma](https://github.com/puma/puma), gem: [puma](https://rubygems.org/gems/puma) _depends on rack_)
 
 Ruby - Yes (*) / Rubyinius - Yes (Recommended) /  Java- Yes (Recommended)
 
 (*) GIL (Global Interpreter Lock) in (C)Ruby "blocks" higher multi-threaded throughput
 
-**c, ragel**  - _multi-threaded_
 
 
 
