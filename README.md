@@ -73,7 +73,9 @@ Ruby - Yes (Recommended)  / Rubinius - ?? / Java - x
 
 **c, ragel**  - _multi-threaded_, _multi-process_
 
-a simple, fast, threaded, and highly concurrent HTTP 1.1 server for rack apps; by Evan Phoenix et al
+a simple, fast, threaded, and highly concurrent HTTP 1.1 server for rack apps; 
+allows firing up multiple workers using the `-w` option;
+by Evan Phoenix et al
 
 (web: [puma.io](http://puma.io), GitHub: [puma/puma](https://github.com/puma/puma), gem: [puma](https://rubygems.org/gems/puma) _depends on rack_)
 
@@ -153,7 +155,7 @@ all-ruby HTTP/2 protocol and HPACK header compression machinery; includes an `HT
 
 a fast, single-threaded engine for arbitrary network communications; wraps all interactions with IP sockets, allowing programs  to focus on coding the network protocols; works for both network servers and clients; by Francis Cianfrocca, Aman Gupta et al
 
-(web: [rubyeventmachine.com](http://rubyeventmachine.com)  (GitHub:  [eventmachine/eventmachine](https://github.com/eventmachine/eventmachine), gem: [eventmachine](https://rubygems.org/gems/eventmachine))
+(web: [rubyeventmachine.com](http://rubyeventmachine.com), GitHub:  [eventmachine/eventmachine](https://github.com/eventmachine/eventmachine), gem: [eventmachine](https://rubygems.org/gems/eventmachine))
 
 Ruby -  Yes (Recommended) /  Rubinius - ??   / Java - ??
 
