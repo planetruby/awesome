@@ -22,19 +22,17 @@ A collection of awesome Ruby web servers (single-threaded, multi-threaded, multi
 
 #### _Contributions welcome. Anything missing? Send in a pull request. Thanks._
 
-<!--
-[Simple Single-Threaded Web Server](#simple-single-threaded-web-server) •
--->
 
-[Multi-Threaded Web Server](#multi-threaded-web-server) •
-[Multi-Process Web Server](#multi-process-web-server) •
-[Async I/O, Multiplexed "Evented" Web Server](#async-io-multiplexed-evented-web-server) •
-[HTTP/2 Web Server](#http2-web-server) •
-[(Web) Server Machines / Building Blocks](#web-server-machines--building-blocks)
+[WEBrick](#webrick) •
+[Passenger](#passenger) •
+[Puma](#puma) •
+[yahns](#yahns) •
+[Unicorn](#unicorn) •
+[Thin](#thin) •
+[Goliath](#goliath) •
+[Reel](#reel) •
+[HTTP-2](#http-2)
 
-<!--
-## Simple Single-Threaded Web Server
--->
 
 
 
