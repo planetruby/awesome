@@ -30,19 +30,18 @@ A collection of awesome Ruby web servers (single-threaded, multi-threaded, multi
 [Multi-Process Web Server](#multi-process-web-server) •
 [Async I/O, Multiplexed "Evented" Web Server](#async-io-multiplexed-evented-web-server) •
 [HTTP/2 Web Server](#http2-web-server) •
-[More Web Servers](#more-web-servers) •
 [(Web) Server Machines / Building Blocks](#web-server-machines--building-blocks)
-
 
 <!--
 ## Simple Single-Threaded Web Server
 -->
 
 
-## Multi-Threaded Web Server
+
+## Multi-Threaded, Multi-Process, Async I/O, Multiplexed "Evented" Web Server
 
 
-## WEBrick 
+### WEBrick 
 
 _multi-threaded_
 
@@ -59,7 +58,7 @@ server.start
 Ruby - Yes / Rubinius - Yes /  Java - Yes
 
 
-## Passenger 
+### Passenger 
 
 **c++** -  _multi-threaded_, _evented_, _multi-process_, _watchdog_
 
@@ -68,7 +67,7 @@ web: [phusionpassenger.com](https://www.phusionpassenger.com), GitHub: [phusion/
 Ruby - Yes (Recommended)  / Rubinius - ?? / Java - x
 
 
-## Puma
+### Puma
 
 **c, ragel**  - _multi-threaded_
 
@@ -79,14 +78,14 @@ Ruby - Yes (*) / Rubyinius - Yes (Recommended) /  Java- Yes (Recommended)
 (*) GIL (Global Interpreter Lock) in (C)Ruby "blocks" higher multi-threaded throughput
 
 
-## yahns
+### yahns
 
 _multi-threaded_
 
 web: [yahns.yhbt.net](http://yahns.yhbt.net/README), git clone: [yhbt.net/yahns](git://yhbt.net/yahns.git), gem: [yahns](https://rubygems.org/gems/yahns)) - a multi-threaded, (optionally) multi-process, internally async (no public async API, yet, just synchronous Rack 1.x), supports Rack streaming and more;  by Eric Wong et al
 
 
-## Unicorn
+### Unicorn
 
 **c** - _multi-process_
 
@@ -95,33 +94,49 @@ web: [unicorn.bogomips.org](http://unicorn.bogomips.org), git: [unicorn](http://
 Ruby - Yes (Recommended)  / Rubinius - ?? / Java - ??
 
 
-## Async I/O, Multiplexed "Evented" Web Server 
+### Thin
 
-- [Thin](http://code.macournoyer.com/thin) **c, ragel** (GitHub: [macournoyer/thin](https://github.com/macournoyer/thin), gem: [thin](https://rubygems.org/gems/thin) _depends on rack, eventmachine_) - a simple and fast web server; powered by event machine by Marc-André Cournoyer et al
+**c, ragel** - _evented_, _eventmachine_
+
+web: [code.macournoyer.com/thin](http://code.macournoyer.com/thin), GitHub: [macournoyer/thin](https://github.com/macournoyer/thin), gem: [thin](https://rubygems.org/gems/thin) _depends on rack, eventmachine_ - a simple and fast web server; powered by event machine by Marc-André Cournoyer et al
 
 Ruby - Yes (Recommended) / Rubinius - ??  / Java - ??
 
-- [Goliath](http://goliath.io) (GitHub: [postrank-labs/goliath](https://github.com/postrank-labs/goliath), gem: [goliath](https://rubygems.org/gems/goliath) _depends on rack, eventmachine_) - non-blocking (async) web server framework; powered by event machine; uses fibers to untangle the complicated callback-based code into "plain old" linear-execution
+### Goliath
+
+_evented_, _eventmachine_, _fibers_
+
+web: [goliath.io](http://goliath.io), GitHub: [postrank-labs/goliath](https://github.com/postrank-labs/goliath), gem: [goliath](https://rubygems.org/gems/goliath) _depends on rack, eventmachine_ - non-blocking (async) web server framework; powered by event machine; uses fibers to untangle the complicated callback-based code into "plain old" linear-execution
 
 Ruby -  Yes (Recommended) /  Rubinius - ??   / Java - ??
 
 
-- Reel (GitHub: [celluloid/reel](https://github.com/celluloid/reel), gem: [reel](https://rubygems.org/gems/reel) _depends on celluloid_) -  a fast, non-blocking "evented" web server built on Celluloid::IO; by Tony Arcieri et al
+### Reel
+
+_evented_, _celluloid_, _fibers_
+
+GitHub: [celluloid/reel](https://github.com/celluloid/reel), gem: [reel](https://rubygems.org/gems/reel) _depends on celluloid_ -  a fast, non-blocking "evented" web server built on Celluloid::IO; by Tony Arcieri et al
 
 
-## HTTP/2 Web Server
+### HTTP-2
 
-- HTTP-2 (GitHub: [igrigorik/http-2](https://github.com/igrigorik/http-2), gem: [http-2](https://rubygems.org/gems/http-2)) - pure-ruby HTTP/2 protocol and HPACK header compression machinery; includes an `HTTP2::Server` for testing; by Ilya Grigorik et al 
+GitHub: [igrigorik/http-2](https://github.com/igrigorik/http-2), gem: [http-2](https://rubygems.org/gems/http-2) - pure-ruby HTTP/2 protocol and HPACK header compression machinery; includes an `HTTP2::Server` for testing; by Ilya Grigorik et al 
 
 
 ## (Web) Server Machines / Building Blocks
 
-- [Event Machine](http://rubyeventmachine.com) **c** (GitHub:  [eventmachine/eventmachine](https://github.com/eventmachine/eventmachine), gem: [eventmachine](https://rubygems.org/gems/eventmachine)) -  a fast, single-threaded engine for arbitrary network communications; wraps all interactions with IP sockets, allowing programs  to focus on coding the network protocols; works for both network servers and clients; by Francis Cianfrocca, Aman Gupta et al
+
+### Event Machine
+
+**c** - _evented_
+
+web: [rubyeventmachine.com](http://rubyeventmachine.com)  (GitHub:  [eventmachine/eventmachine](https://github.com/eventmachine/eventmachine), gem: [eventmachine](https://rubygems.org/gems/eventmachine) -  a fast, single-threaded engine for arbitrary network communications; wraps all interactions with IP sockets, allowing programs  to focus on coding the network protocols; works for both network servers and clients; by Francis Cianfrocca, Aman Gupta et al
 
 Ruby -  Yes (Recommended) /  Rubinius - ??   / Java - ??
 
+### Celluloid:IO
 
-- Celluloid:IO (GitHub: [celluloid/celluloid-io](https://github.com/celluloid/celluloid-io), gem: [celluloid-io](https://rubygems.org/gems/celluloid-io)) - evented I/O for celluloid actors; build fast evented programs like you would with EventMachine or Node.js using regular synchronous libraries based on TCPSocket; by Tony Arcieri et al 
+GitHub: [celluloid/celluloid-io](https://github.com/celluloid/celluloid-io), gem: [celluloid-io](https://rubygems.org/gems/celluloid-io) - evented I/O for celluloid actors; build fast evented programs like you would with EventMachine or Node.js using regular synchronous libraries based on TCPSocket; by Tony Arcieri et al 
 
 Ruby -  Yes (Recommended) /  Rubinius - ??   / Java - ??
 
