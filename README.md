@@ -41,7 +41,10 @@ A collection of awesome Ruby web servers (single-threaded, multi-threaded, multi
 
 ## Multi-Threaded Web Server
 
-- WEBrick (GitHub: ruby/ruby/lib/[webrick.rb](https://github.com/ruby/ruby/blob/trunk/lib/webrick.rb)+[webrick/**](https://github.com/ruby/ruby/tree/trunk/lib/webrick)) - an HTTP server toolkit; ships with the standard library (stdlib); lets you use HTTP(S) servers, proxy servers, and virtual-host servers; by Masayoshi Takahashi, Yuuzou Gotou et al
+
+## WEBrick -  #_multi-threaded_
+
+GitHub: ruby/ruby/lib/[webrick.rb](https://github.com/ruby/ruby/blob/trunk/lib/webrick.rb)+[webrick/**](https://github.com/ruby/ruby/tree/trunk/lib/webrick) - an HTTP server toolkit; ships with the standard library (stdlib); lets you use HTTP(S) servers, proxy servers, and virtual-host servers; by Masayoshi Takahashi, Yuuzou Gotou et al
 
 ~~~
 require 'webrick'
@@ -54,7 +57,9 @@ server.start
 Ruby - Yes / Rubinius - Yes /  Java - Yes
 
 
-- [Passenger](https://www.phusionpassenger.com) **c++**  (GitHub: [phusion/passenger](https://github.com/phusion/passenger), gem: [passenger](https://rubygems.org/gems/passenger) _depends on rack_) - also known as "Raptor", mod_rails or mod_rack; a web server w/ a zero-copy architecture, watchdog system and hybrid evented, multi-threaded and multi-process design; by Hongli Lai (Phusion B.V.) et al
+## Passenger **c++**  -  #_multi-threaded_, _evented_, _multi-process_, _watchdog_
+
+[phusionpassenger.com](https://www.phusionpassenger.com), GitHub: [phusion/passenger](https://github.com/phusion/passenger), gem: [passenger](https://rubygems.org/gems/passenger) _depends on rack_- also known as "Raptor", mod_rails or mod_rack; a web server w/ a zero-copy architecture, watchdog system and hybrid evented, multi-threaded and multi-process design; by Hongli Lai (Phusion B.V.) et al
 
 Ruby - Yes (Recommended)  / Rubinius - ?? / Java - x
 
