@@ -54,7 +54,15 @@ server.start
 
 - [Passenger](https://www.phusionpassenger.com) **c++**  (GitHub: [phusion/passenger](https://github.com/phusion/passenger), gem: [passenger](https://rubygems.org/gems/passenger) _depends on rack_) - also known as "Raptor", mod_rails or mod_rack; a web server w/ a zero-copy architecture, watchdog system and hybrid evented, multi-threaded and multi-process design; by Hongli Lai (Phusion B.V.) et al
 
+
 - [Puma](http://puma.io) **c, ragel** (GitHub: [puma/puma](https://github.com/puma/puma), gem: [puma](https://rubygems.org/gems/puma) _depends on rack_) - a simple, fast, threaded, and highly concurrent HTTP 1.1 server for rack apps; by Evan Phoenix et al
+
+| Ruby      | Rubinius   | Java    |
+| :-------: | :------:   |:------: |
+| Yes (*)      | Yes (Recommended) | Java Yes (Recommended)  |
+
+(*) GIL (Global Interpreter Lock) in (C)Ruby "blocks" higher multi-threaded throughput
+
 
 - [yahns](http://yahns.yhbt.net/README) 
 (git clone: yhbt.net/yahns, gem: [yahns](https://rubygems.org/gems/yahns)) - a multi-threaded, (optionally) multi-process, internally async (no public async API, yet, just synchronous Rack 1.x), supports Rack streaming and more;  by Eric Wong et al
