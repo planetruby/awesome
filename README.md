@@ -34,8 +34,6 @@ A collection of awesome Ruby web servers (single-threaded, multi-threaded, multi
 [HTTP-2](#http-2)
 
 
-
-
 ## Multi-Threaded, Multi-Process, Async I/O, Multiplexed "Evented" Web Server
 
 
@@ -43,7 +41,7 @@ A collection of awesome Ruby web servers (single-threaded, multi-threaded, multi
 
 _multi-threaded_  
 
-an HTTP server toolkit; ships with the standard library (stdlib); lets you use HTTP(S) servers, proxy servers, and virtual-host servers; by Masayoshi Takahashi, Yuuzou Gotou et al
+An HTTP server toolkit; ships with the standard library (stdlib); lets you use HTTP(S) servers, proxy servers, and virtual-host servers; by Masayoshi Takahashi, Yuuzou Gotou et al
 
 (GitHub: ruby/ruby/lib/[webrick.rb](https://github.com/ruby/ruby/blob/trunk/lib/webrick.rb)+[webrick/**](https://github.com/ruby/ruby/tree/trunk/lib/webrick))  
 
@@ -62,7 +60,7 @@ Ruby - Yes / Rubinius - Yes /  Java - Yes
 
 **c++** - _multi-threaded_, _evented_, _multi-process_, _watchdog_
 
-also known as "Raptor", mod_rails or mod_rack; a web server w/ a zero-copy architecture, watchdog system and hybrid evented, multi-threaded and multi-process design; by Hongli Lai (Phusion B.V.) et al
+A web server - also known as "Raptor", mod_rails or mod_rack -  with a zero-copy architecture, watchdog system and hybrid evented, multi-threaded and multi-process design; by Hongli Lai (Phusion B.V.) et al
 
 (web: [phusionpassenger.com](https://www.phusionpassenger.com), GitHub: [phusion/passenger](https://github.com/phusion/passenger), gem: [passenger](https://rubygems.org/gems/passenger) _depends on rack_)
 
@@ -73,7 +71,7 @@ Ruby - Yes (Recommended)  / Rubinius - ?? / Java - x
 
 **c, ragel**  - _multi-threaded_, _multi-process_
 
-a simple, fast, threaded, and highly concurrent HTTP 1.1 server for rack apps; 
+A simple, fast, threaded, and highly concurrent HTTP 1.1 server for rack apps; 
 allows firing up multiple workers using the `-w` option;
 by Evan Phoenix et al
 
@@ -81,7 +79,7 @@ by Evan Phoenix et al
 
 Ruby - Yes (*) / Rubyinius - Yes (Recommended) /  Java- Yes (Recommended)
 
-(*) GIL (Global Interpreter Lock) in (C)Ruby "blocks" higher multi-threaded throughput
+Note: (*) Global Interpreter Lock (GIL) in (C)Ruby "blocks" higher multi-threaded throughput
 
 
 
@@ -89,7 +87,7 @@ Ruby - Yes (*) / Rubyinius - Yes (Recommended) /  Java- Yes (Recommended)
 
 _multi-threaded_
 
-a multi-threaded, (optionally) multi-process, internally async (no public async API, yet, just synchronous Rack 1.x), supports Rack streaming and more;  by Eric Wong et al
+A multi-threaded, (optionally) multi-process, internally async (no public async API, yet, just synchronous Rack 1.x), supports Rack streaming and more;  by Eric Wong et al
 
 (web: [yahns.yhbt.net](http://yahns.yhbt.net/README), git clone: [yhbt.net/yahns](git://yhbt.net/yahns.git), gem: [yahns](https://rubygems.org/gems/yahns)) 
 
@@ -98,7 +96,7 @@ a multi-threaded, (optionally) multi-process, internally async (no public async 
 
 **c** - _multi-process_
 
-an HTTP server for rack apps and Unix; workers all run within their own isolated address space and only serve one client at a time for maximum robustness; by Eric Wong et al
+An HTTP server for rack apps and Unix; workers all run within their own isolated address space and only serve one client at a time for maximum robustness; by Eric Wong et al
 
 (web: [unicorn.bogomips.org](http://unicorn.bogomips.org), git: [unicorn](http://bogomips.org/unicorn.git), GitHub mirror: [defunkt/unicorn](https://github.com/defunkt/unicorn), gem: [unicorn](https://rubygems.org/gems/unicorn) _depends on rack, kgio_) 
 
@@ -110,7 +108,7 @@ Ruby - Yes (Recommended)  / Rubinius - ?? / Java - ??
 
 **c, ragel** - _evented_, _eventmachine_
 
-a simple and fast web server; powered by event machine by Marc-André Cournoyer et al
+A simple and fast web server; powered by event machine by Marc-André Cournoyer et al
 
 (web: [code.macournoyer.com/thin](http://code.macournoyer.com/thin), GitHub: [macournoyer/thin](https://github.com/macournoyer/thin), gem: [thin](https://rubygems.org/gems/thin) _depends on rack, eventmachine_) 
 
@@ -121,7 +119,7 @@ Ruby - Yes (Recommended) / Rubinius - ??  / Java - ??
 
 _evented_, _eventmachine_, _fibers_
 
-non-blocking (async) web server framework; powered by event machine; uses fibers to untangle the complicated callback-based code into "plain old" linear-execution
+A non-blocking (async) web server framework; powered by event machine; uses fibers to untangle the complicated callback-based code into "plain old" linear-execution
 
 (web: [goliath.io](http://goliath.io), GitHub: [postrank-labs/goliath](https://github.com/postrank-labs/goliath), gem: [goliath](https://rubygems.org/gems/goliath) _depends on rack, eventmachine_) 
 
@@ -131,16 +129,21 @@ Ruby -  Yes (Recommended) /  Rubinius - ??   / Java - ??
 
 ### Reel
 
-_evented_, _celluloid_, _fibers_
+**c** - _evented_, _celluloid_, _fibers_
 
-a fast, non-blocking "evented" web server built on Celluloid::IO; by Tony Arcieri et al
+A fast, non-blocking "evented" web server built on Celluloid::IO; 
+supports Rack via the [reel-rack](https://github.com/celluloid/reel-rack) addon;
+technically "multi-fiber" via Celluloid; by Tony Arcieri et al
 
 (GitHub: [celluloid/reel](https://github.com/celluloid/reel), gem: [reel](https://rubygems.org/gems/reel) _depends on celluloid_)
 
+Ruby -  Yes (Recommended) /  Rubinius - ??   / Java - Yes (*)
+
+Note: (*) Compatible extension for Java
 
 ### HTTP-2
 
-all-ruby HTTP/2 protocol and HPACK header compression machinery; includes an `HTTP2::Server` for testing; by Ilya Grigorik et al
+All Ruby (no C extensions) HTTP/2 protocol and HPACK header compression machinery; includes an `HTTP2::Server` for testing; by Ilya Grigorik et al
 
 (GitHub: [igrigorik/http-2](https://github.com/igrigorik/http-2), gem: [http-2](https://rubygems.org/gems/http-2)) 
 
@@ -153,7 +156,7 @@ all-ruby HTTP/2 protocol and HPACK header compression machinery; includes an `HT
 
 **c** - _evented_
 
-a fast, single-threaded engine for arbitrary network communications; wraps all interactions with IP sockets, allowing programs  to focus on coding the network protocols; works for both network servers and clients; by Francis Cianfrocca, Aman Gupta et al
+A fast, single-threaded engine for arbitrary network communications; wraps all interactions with IP sockets, allowing programs  to focus on coding the network protocols; works for both network servers and clients; by Francis Cianfrocca, Aman Gupta et al
 
 (web: [rubyeventmachine.com](http://rubyeventmachine.com), GitHub:  [eventmachine/eventmachine](https://github.com/eventmachine/eventmachine), gem: [eventmachine](https://rubygems.org/gems/eventmachine))
 
@@ -162,7 +165,7 @@ Ruby -  Yes (Recommended) /  Rubinius - ??   / Java - ??
 
 ### Celluloid:IO
 
-evented I/O for celluloid actors; build fast evented programs like you would with EventMachine or Node.js using regular synchronous libraries based on TCPSocket; by Tony Arcieri et al
+Evented I/O for celluloid actors; build fast evented programs like you would with EventMachine or Node.js using regular synchronous libraries based on TCPSocket; by Tony Arcieri et al
 
 (GitHub: [celluloid/celluloid-io](https://github.com/celluloid/celluloid-io), gem: [celluloid-io](https://rubygems.org/gems/celluloid-io))
 
@@ -176,15 +179,17 @@ Ruby -  Yes (Recommended) /  Rubinius - ??   / Java - ??
 | :--------  | :----: |:------: | :----: | :-------------: | :---------: | :-----------: | :-----: | :------: | :---------: |
 | WEBRick    |  Yes   | Yes     |  x     |   Yes          |   x         |   x           |  x      |   x      |  x          |
 | Passenger  |  Yes   | Yes     |  ??    |  Yes          |   x         |   Yes         |   Yes   |  Yes     |  Yes        |
-| Puma       |  Yes   | Yes     |  x    |  Yes          |   x         |   x           |   x     |   x      |  Yes        |
+| Puma       |  Yes   | Yes     |  x    |  Yes          |   x         |   Yes           |   x     |   x      |  Yes        |
 | Unicorn    |  Yes   | Yes     |  x    |  x           |   x         |   Yes         |   Yes   |  Yes     |  Yes        | 
 | Thin       |  Yes   | Yes     |  x    |  Yes          |   x         |   x           |  Yes    |   x      |  Yes        |
 | Goliath    |  Yes   | Yes     |  x    |  x           |  Yes        |   x           |  Yes    |   x      |  Yes        |
-| Reel       |  x     | Yes     |  x    |  ??           |   x         |   x           |  Yes    |   x      |  ??
+| Reel       |  Yes(*)  | Yes     |  x    |  ??           |   Yes (*)         |   x           |  Yes    |   x      |  ??
 | HTTP-2     |  ??    |  x      | Yes   |  ??           |   x         |   x           |  Yes    |   x      |  x |
 
 
-(Note: Thin, Goliath, ... using EventMachine - ; Reel, ... using Celluloid:IO for evented, non-blocking async I/O)
+(Note: Thin, Goliath, ... using EventMachine - ; Reel, ... using Celluloid:IO for evented, non-blocking async I/O;
+Reel supports Rack via reel-rack addon; Reel technically "multi-fiber" via Celluioid)
+
 
 
 
