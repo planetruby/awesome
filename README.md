@@ -40,7 +40,9 @@ A collection of awesome Ruby web servers (single-threaded, multi-threaded, multi
 
 _multi-threaded_  
 
-An HTTP server toolkit; ships with the standard library (stdlib); lets you use HTTP(S) servers, proxy servers, and virtual-host servers; by Masayoshi Takahashi, Yuuzou Gotou et al
+An HTTP server toolkit; ships with the standard library (stdlib); lets you use HTTP(S) servers,
+proxy servers, and virtual-host servers;
+by Masayoshi Takahashi, Yuuzou Gotou et al
 
 (github: ruby/lib/[webrick.rb](https://github.com/ruby/ruby/blob/trunk/lib/webrick.rb)+[webrick/**](https://github.com/ruby/ruby/tree/trunk/lib/webrick))  
 
@@ -66,7 +68,8 @@ Java     - Yes
 
 **c++** - _multi-threaded_, _evented_, _multi-process_, _watchdog_
 
-A web server - also known as "Raptor", mod_rails or mod_rack -  with a zero-copy architecture, watchdog system and hybrid evented, multi-threaded and multi-process design; by Hongli Lai (Phusion B.V.) et al
+A web server - also known as "Raptor", mod_rails or mod_rack -  with a zero-copy architecture, watchdog system and hybrid evented, multi-threaded and multi-process design;
+by Hongli Lai (Phusion B.V.) et al
 
 (web: [phusionpassenger.com](https://www.phusionpassenger.com),
  github: [phusion/passenger](https://github.com/phusion/passenger),
@@ -89,7 +92,8 @@ see the commercial enterprise edition.
 
 **c, ragel**  - _multi-threaded_, _multi-process_
 
-A simple, fast, threaded, and highly concurrent HTTP 1.1 server for rack apps; 
+A simple, fast, threaded, and highly concurrent HTTP 1.1 server for rack apps;
+(re)uses the Mongrel HTTP parser (in C/Ragel);
 allows firing up multiple workers using the `-w` option;
 by Evan Phoenix et al
 
@@ -109,13 +113,19 @@ Note: (*) Global Interpreter Lock (GIL) in (C)Ruby "blocks" higher multi-threade
 
 [Unicorn](#unicorn) •
 [Rainbows!](#rainbows) •
-[yahns](#yahns) •
+[Yahns](#yahns) •
 
 ##### Unicorn
 
 **c** - _multi-process_
 
-An HTTP server for rack apps and Unix; workers all run within their own isolated address space and only serve one client at a time for maximum robustness; by Eric Wong et al
+An HTTP server for rack apps and Unix; workers all run within their own isolated address space
+and only serve one client at a time for maximum robustness;
+by Eric Wong et al
+
+Note: Use Unicorn with a fully-buffering reverse proxy such as nginx for slow clients.
+Unicorn will never ever use new-fangled things
+like non-blocking async socket I/O, threads, epoll or kqueue for supporting slow clients (long-running requests).
 
 (web: [unicorn.bogomips.org](http://unicorn.bogomips.org),
  git: [unicorn](http://bogomips.org/unicorn.git),
@@ -124,7 +134,8 @@ An HTTP server for rack apps and Unix; workers all run within their own isolated
 
 Ruby     - Yes (Recommended)  //
 Rubinius - ?? //
-Java     - ??
+Java     - No //
+Windows  - No
 
 
 #### Rainbows!
@@ -133,22 +144,24 @@ _multi-process_, _multi-threaded_, _evented_, _eventmachine_, _fibers_
 
 A web server for sleepy apps and slow clients;
 based on unicorn, but designed to handle long request/response times and/or slow clients;
-Rainbows! is about diversity -
-network concurrency models supported include: 
+Rainbows! is about diversity - network concurrency models supported include: 
 Epoll, EventMachine, FiberPool, FiberSpawn, NeverBlock, Revactor,
-ThreadPool,ThreadSpawn, WriterThreadPool, WriterThreadSpawn, XEpoll, XEpollThreadPool, 
-XEpollThreadSpawn and more; by Eric Wong et al
+ThreadPool, ThreadSpawn, WriterThreadPool, WriterThreadSpawn, XEpoll, XEpollThreadPool, 
+XEpollThreadSpawn and more;
+by Eric Wong et al
 
 (web: [rainbows.bogomips.org](http://rainbows.bogomips.org),
  git: [rainbows](http://bogomips.org/rainbows.git),
  gem: [rainbows](https://rubygems.org/gems/rainbows))
 
 
-#### yahns
+#### Yahns
 
 _multi-threaded_
 
-A multi-threaded, (optionally) multi-process, internally async (no public async API, yet, just synchronous Rack 1.x), supports Rack streaming and more;  by Eric Wong et al
+A multi-threaded, (optionally) multi-process, internally async (no public async API, yet,
+just synchronous Rack 1.x), supports Rack streaming and more;
+by Eric Wong et al
 
 (web: [yahns.yhbt.net](http://yahns.yhbt.net/README),
  git clone: [yhbt.net/yahns](git://yhbt.net/yahns.git),
@@ -160,7 +173,9 @@ A multi-threaded, (optionally) multi-process, internally async (no public async 
 
 **c, ragel** - _evented_, _eventmachine_
 
-A simple and fast web server; powered by event machine by Marc-André Cournoyer et al
+A simple and fast web server powered by EventMachine;
+(re)uses the Mongrel HTTP parser (in C/Ragel);
+by Marc-André Cournoyer et al
 
 (web: [code.macournoyer.com/thin](http://code.macournoyer.com/thin),
  github: [macournoyer/thin](https://github.com/macournoyer/thin),
@@ -193,7 +208,8 @@ Java     - ??
 
 A fast, non-blocking "evented" web server built on Celluloid::IO; 
 supports Rack via the [reel-rack](https://github.com/celluloid/reel-rack) addon;
-technically "multi-fiber" via Celluloid; by Tony Arcieri et al
+technically "multi-fiber" via Celluloid;
+by Tony Arcieri et al
 
 (github: [celluloid/reel](https://github.com/celluloid/reel),
  gem: [reel](https://rubygems.org/gems/reel) _depends on celluloid_)
@@ -207,7 +223,9 @@ Note: (*) Compatible extension for Java
 
 ### HTTP-2
 
-All Ruby (no C extensions) HTTP/2 protocol and HPACK header compression machinery; includes an `HTTP2::Server` for testing; by Ilya Grigorik et al
+All Ruby (no C extensions) HTTP/2 protocol and HPACK header compression machinery;
+includes an `HTTP2::Server` for testing;
+by Ilya Grigorik et al
 
 (github: [igrigorik/http-2](https://github.com/igrigorik/http-2),
  gem: [http-2](https://rubygems.org/gems/http-2)) 
@@ -221,7 +239,8 @@ All Ruby (no C extensions) HTTP/2 protocol and HPACK header compression machiner
 
 **c** - _evented_
 
-A fast, single-threaded engine for arbitrary network communications; wraps all interactions with IP sockets, allowing programs  to focus on coding the network protocols; works for both network servers and clients; by Francis Cianfrocca, Aman Gupta et al
+A fast, single-threaded engine for arbitrary network communications; wraps all interactions with IP sockets, allowing programs  to focus on coding the network protocols; works for both network servers and clients;
+by Francis Cianfrocca, Aman Gupta et al
 
 (web: [rubyeventmachine.com](http://rubyeventmachine.com),
  github:  [eventmachine/eventmachine](https://github.com/eventmachine/eventmachine),
@@ -234,7 +253,8 @@ Java     -  ??
 
 ### Celluloid:IO
 
-Evented I/O for celluloid actors; build fast evented programs like you would with EventMachine or Node.js using regular synchronous libraries based on TCPSocket; by Tony Arcieri et al
+Evented I/O for celluloid actors; build fast evented programs like you would with EventMachine or Node.js using regular synchronous libraries based on TCPSocket;
+by Tony Arcieri et al
 
 (github: [celluloid/celluloid-io](https://github.com/celluloid/celluloid-io), gem: [celluloid-io](https://rubygems.org/gems/celluloid-io))
 
