@@ -113,9 +113,9 @@ Note: (*) Global Interpreter Lock (GIL) in (C)Ruby "blocks" higher multi-threade
 
 [Unicorn](#unicorn) •
 [Rainbows!](#rainbows) •
-[Yahns](#yahns) •
+[Yahns](#yahns)
 
-##### Unicorn
+#### Unicorn
 
 **c** - _multi-process_
 
@@ -223,7 +223,7 @@ Note: (*) Compatible extension for Java
 
 ### HTTP-2
 
-All Ruby (no C extensions) HTTP/2 protocol and HPACK header compression machinery;
+HTTP/2 protocol and HPACK header compression machinery in all Ruby (no C extensions);
 includes an `HTTP2::Server` for testing;
 by Ilya Grigorik et al
 
@@ -253,6 +253,8 @@ Java     -  ??
 
 ### Celluloid:IO
 
+**c** - _evented_, _fibers_
+
 Evented I/O for celluloid actors; build fast evented programs like you would with EventMachine or Node.js using regular synchronous libraries based on TCPSocket;
 by Tony Arcieri et al
 
@@ -266,22 +268,35 @@ Java     -  ??
 
 ## Feature Matrix
 
-| Server     | Rack   | HTTP/1.1 |  HTTP/2 | Multi-Threaded | Multi-Fiber | Multi-Process | Evented | Watchdog | C Extension |
-| :--------  | :----: |:------: | :----: | :-------------: | :---------: | :-----------: | :-----: | :------: | :---------: |
-| WEBRick    |  Yes   | Yes     |  x     |   Yes          |   x         |   x           |  x      |   x      |  x          |
-| Passenger  |  Yes   | Yes     |  ??    |  Yes          |   x         |   Yes         |   Yes   |  Yes     |  Yes        |
-| Puma       |  Yes   | Yes     |  x    |  Yes          |   x         |   Yes           |   x     |   x      |  Yes        |
-| Unicorn    |  Yes   | Yes     |  x    |  x           |   x         |   Yes         |   Yes   |  Yes     |  Yes        | 
-| Thin       |  Yes   | Yes     |  x    |  Yes          |   x         |   x           |  Yes    |   x      |  Yes        |
-| Goliath    |  Yes   | Yes     |  x    |  x           |  Yes        |   x           |  Yes    |   x      |  Yes        |
-| Reel       |  Yes(*)  | Yes     |  x    |  ??           |   Yes (*)         |   x           |  Yes    |   x      |  ??
-| HTTP-2     |  ??    |  x      | Yes   |  ??           |   x         |   x           |  Yes    |   x      |  x |
+| Server     | Rack     | HTTP/1.1 | HTTP/2 |
+| :--------  | :------: |:-------: | :----: |
+| WEBRick    |  Yes     |  Yes     |   x    |
+| Passenger  |  Yes     |  Yes     |  ??    |
+| Puma       |  Yes     |  Yes     |   x    |
+| Unicorn    |  Yes     |  Yes     |   x    |
+| Thin       |  Yes     |  Yes     |   x    |
+| Goliath    |  Yes     |  Yes     |   x    |
+| Reel       |  Yes(*)  |  Yes     |   x    |
+| HTTP-2     |  ??      |   x      |  Yes   |
+
+(Note: Reel supports Rack via reel-rack addon)
 
 
-(Note: Thin, Goliath, ... using EventMachine - ; Reel, ... using Celluloid:IO for evented, non-blocking async I/O;
-Reel supports Rack via reel-rack addon; Reel technically "multi-fiber" via Celluioid)
+| Server     | Multi-Threaded | Multi-Fiber | Multi-Process | Evented | Watchdog | C Extension |
+| :--------  | :------------: | :---------: | :-----------: | :-----: | :------: | :---------: |
+| WEBRick    |  Yes           |   x         |    x          |   x     |   x      |   x         |
+| Passenger  |  Yes           |   x         |   Yes         |  Yes    |  Yes     |  Yes        |
+| Puma       |  Yes           |   x         |   Yes         |   x     |   x      |  Yes        |
+| Unicorn    |   x            |   x         |   Yes         |  Yes    |  Yes     |  Yes        | 
+| Thin       |  Yes           |   x         |    x          |  Yes    |   x      |  Yes        |
+| Goliath    |   x            |  Yes        |    x          |  Yes    |   x      |  Yes        |
+| Reel       |   x            |  Yes (*)    |    x          |  Yes    |   x      |  Yes        |
+| HTTP-2     |  ??            |   x         |    x          |  Yes    |   x      |   x         |
 
 
+(Note: Thin, Goliath, ... using EventMachine - ;
+ Reel, ... using Celluloid:IO for evented, non-blocking async I/O;
+ Reel technically "multi-fiber" via Celluioid)
 
 
 Todo: What features to add?
