@@ -44,7 +44,7 @@ An HTTP server toolkit; ships with the standard library (stdlib); lets you use H
 proxy servers, and virtual-host servers;
 by Masayoshi Takahashi, Yuuzou Gotou et al
 
-(github: ruby/lib/[webrick.rb](https://github.com/ruby/ruby/blob/trunk/lib/webrick.rb)+[webrick/**](https://github.com/ruby/ruby/tree/trunk/lib/webrick))  
+(github: ruby/ruby/lib/[webrick.rb](https://github.com/ruby/ruby/blob/trunk/lib/webrick.rb)+[webrick/**](https://github.com/ruby/ruby/tree/trunk/lib/webrick))  
 
 ~~~
 require 'webrick'
@@ -54,8 +54,8 @@ trap('INT') { server.stop }
 server.start
 ~~~
 
-Ruby     - Yes //
-Rubinius - Yes //
+Ruby     - Yes  |
+Rubinius - Yes  |
 Java     - Yes
 
 
@@ -71,16 +71,16 @@ Java     - Yes
 A web server - also known as "Raptor", mod_rails or mod_rack -  with a zero-copy architecture, watchdog system and hybrid evented, multi-threaded and multi-process design;
 by Hongli Lai (Phusion B.V.) et al
 
+Note: The "standard" runs single-threaded; for "advanced" higher throughput,
+see the commercial enterprise edition.
+
 (web: [phusionpassenger.com](https://www.phusionpassenger.com),
  github: [phusion/passenger](https://github.com/phusion/passenger),
  gem: [passenger](https://rubygems.org/gems/passenger) _depends on rack_)
 
-Ruby     - Yes (Recommended)  //
-Rubinius - ??  //
+Ruby     - Yes (Recommended)  |
+Rubinius - ??                 |
 Java     - No
-
-Note: The "standard" runs single-threaded; for "advanced" higher throughput,
-see the commercial enterprise edition.
 
 
 #### Enterprise (Commercial)
@@ -101,8 +101,8 @@ by Evan Phoenix et al
  github: [puma/puma](https://github.com/puma/puma),
  gem: [puma](https://rubygems.org/gems/puma) _depends on rack_)
 
-Ruby      - Yes (*) //
-Rubyinius - Yes (Recommended) //
+Ruby      - Yes (*)           |
+Rubyinius - Yes (Recommended) |
 Java      - Yes (Recommended)
 
 Note: (*) Global Interpreter Lock (GIL) in (C)Ruby "blocks" higher multi-threaded throughput
@@ -132,9 +132,9 @@ like non-blocking async socket I/O, threads, epoll or kqueue for supporting slow
  github mirror: [defunkt/unicorn](https://github.com/defunkt/unicorn),
  gem: [unicorn](https://rubygems.org/gems/unicorn) _depends on rack, kgio_) 
 
-Ruby     - Yes (Recommended)  //
-Rubinius - ?? //
-Java     - No //
+Ruby     - Yes (Recommended)  |
+Rubinius - ??                 |
+Java     - No                 |
 Windows  - No
 
 
@@ -181,8 +181,8 @@ by Marc-André Cournoyer et al
  github: [macournoyer/thin](https://github.com/macournoyer/thin),
  gem: [thin](https://rubygems.org/gems/thin) _depends on rack, eventmachine_) 
 
-Ruby     - Yes (Recommended) //
-Rubinius - ??  //
+Ruby     - Yes (Recommended) |
+Rubinius - ??                |
 Java     - ??
 
 
@@ -196,8 +196,8 @@ A non-blocking (async) web server framework; powered by event machine; uses fibe
  github: [postrank-labs/goliath](https://github.com/postrank-labs/goliath),
  gem: [goliath](https://rubygems.org/gems/goliath) _depends on rack, eventmachine_) 
 
-Ruby     -  Yes (Recommended) //
-Rubinius - ??   //
+Ruby     -  Yes (Recommended)  |
+Rubinius - ??                  |
 Java     - ??
 
 
@@ -214,8 +214,8 @@ by Tony Arcieri et al
 (github: [celluloid/reel](https://github.com/celluloid/reel),
  gem: [reel](https://rubygems.org/gems/reel) _depends on celluloid_)
 
-Ruby     - Yes (Recommended)  //
-Rubinius - ??                 //
+Ruby     - Yes (Recommended)  |
+Rubinius - ??                 |
 Java     - Yes (*)
 
 Note: (*) Compatible extension for Java
@@ -246,8 +246,8 @@ by Francis Cianfrocca, Aman Gupta et al
  github:  [eventmachine/eventmachine](https://github.com/eventmachine/eventmachine),
  gem: [eventmachine](https://rubygems.org/gems/eventmachine))
 
-Ruby     -  Yes (Recommended)  //
-Rubinius -  ??   //
+Ruby     -  Yes (Recommended)  |
+Rubinius -  ??                 |
 Java     -  ??
 
 
@@ -260,8 +260,8 @@ by Tony Arcieri et al
 
 (github: [celluloid/celluloid-io](https://github.com/celluloid/celluloid-io), gem: [celluloid-io](https://rubygems.org/gems/celluloid-io))
 
-Ruby     -  Yes (Recommended) //
-Rubinius -  ??   //
+Ruby     -  Yes (Recommended) |
+Rubinius -  ??                |
 Java     -  ??
 
 
