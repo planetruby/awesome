@@ -282,16 +282,16 @@ Java     -  ??
 (Note: Reel supports Rack via reel-rack addon)
 
 
-| Server     | Multi-Threaded | Multi-Fiber | Multi-Process | Evented | Watchdog | C Extension |
-| :--------  | :------------: | :---------: | :-----------: | :-----: | :------: | :---------: |
-| WEBRick    |  Yes           |   x         |    x          |   x     |   x      |   x         |
-| Passenger  |  Yes           |   x         |   Yes         |  Yes    |  Yes     |  Yes        |
-| Puma       |  Yes           |   x         |   Yes         |   x     |   x      |  Yes        |
-| Unicorn    |   x            |   x         |   Yes         |  Yes    |  Yes     |  Yes        | 
-| Thin       |  Yes           |   x         |    x          |  Yes    |   x      |  Yes        |
-| Goliath    |   x            |  Yes        |    x          |  Yes    |   x      |  Yes        |
-| Reel       |   x            |  Yes (*)    |    x          |  Yes    |   x      |  Yes        |
-| HTTP-2     |  ??            |   x         |    x          |  Yes    |   x      |   x         |
+| Server     | Multi-Threaded | Multi-Fiber | Multi-Process | Evented | Watchdog | C Extension | Pipelining |
+| :--------  | :------------: | :---------: | :-----------: | :-----: | :------: | :---------: | :--------: |
+| WEBRick    |  Yes           |   x         |    x          |   x     |   x      |   x         |   x        |
+| Passenger  |  Yes           |   x         |   Yes         |  Yes    |  Yes     |  Yes        |   x        |
+| Puma       |  Yes           |   x         |   Yes         |   x     |   x      |  Yes        |   x        |
+| Unicorn    |   x            |   x         |   Yes         |  Yes    |  Yes     |  Yes        |   x        |
+| Thin       |  Yes           |   x         |    x          |  Yes    |   x      |  Yes        |   x        |
+| Goliath    |   x            |  Yes        |    x          |  Yes    |   x      |  Yes        |  Yes       |
+| Reel       |   x            |  Yes (*)    |    x          |  Yes    |   x      |  Yes        |  Yes       |
+| HTTP-2     |  ??            |   x         |    x          |  Yes    |   x      |   x         |  Yes       |
 
 
 (Note: Thin, Goliath, ... using EventMachine - ;
