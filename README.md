@@ -290,13 +290,16 @@ Java     -  ??
 | Unicorn    |   x            |   x         |   Yes         |  Yes    |  Yes     |  Yes        | 
 | Thin       |  Yes           |   x         |    x          |  Yes    |   x      |  Yes        |
 | Goliath    |   x            |  Yes        |    x          |  Yes    |   x      |  Yes        |
-| Reel       |   x            |  Yes (*)    |    x          |  Yes    |   x      |  Yes        |
+| Reel       |  Yes (*)       |  Yes (*)    |    x          |  Yes    |  Yes (*) |  Yes (*)    |
 | HTTP-2     |  ??            |   x         |    x          |  Yes    |   x      |   x         |
 
 
 (Note: Thin, Goliath, ... using EventMachine - ;
  Reel, ... using Celluloid:IO for evented, non-blocking async I/O;
- Reel technically "multi-fiber" via Celluioid)
+ Reel single-threaded by default but supports [multithreading with Celluloid](https://github.com/celluloid/reel/wiki/Connection-Management-and-Multithreading);
+ Reel technically "multi-fiber" via Celluioid;
+ Reel supports watchdogs via Celluloid supervisors;
+ Reel uses a C extension on CRuby but has a compatible Java extension for JRuby)
 
 
 Todo: What features to add?
