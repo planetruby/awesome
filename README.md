@@ -268,18 +268,31 @@ Java     -  ??
 
 ## Feature Matrix
 
-| Server     | Rack     | HTTP/1.1 | HTTP/2 |
-| :--------  | :------: |:-------: | :----: |
-| WEBRick    |  Yes     |  Yes     |   x    |
-| Passenger  |  Yes     |  Yes     |  ??    |
-| Puma       |  Yes     |  Yes     |   x    |
-| Unicorn    |  Yes     |  Yes     |   x    |
-| Thin       |  Yes     |  Yes     |   x    |
-| Goliath    |  Yes     |  Yes     |   x    |
-| Reel       |  Yes(*)  |  Yes     |   x    |
-| HTTP-2     |  ??      |   x      |  Yes   |
+| Server     | Rack     | HTTP/1.1 | HTTP/2 | HTTP/1.1 Pipelining  |
+| :--------  | :------: |:-------: | :----: | :------------------: |
+| WEBRick    |  Yes     |  Yes     |   x    |  x                   |
+| Passenger  |  Yes     |  Yes     |  ??    |  x                   |
+| Puma       |  Yes     |  Yes     |   x    |  x                   |
+| Unicorn    |  Yes     |  Yes     |   x    |  x                   |
+| Thin       |  Yes     |  Yes     |   x    |  x                   |
+| Goliath    |  Yes     |  Yes     |   x    |  Yes                 |
+| Reel       |  Yes(*)  |  Yes     |   x    |  Yes                 |
+| HTTP-2     |  ??      |   x      |  Yes   |  ??                  |
 
 (Note: Reel supports Rack via reel-rack addon)
+
+Notes on [HTTP Pipelining](https://en.wikipedia.org/wiki/HTTP_pipelining):
+
+-  WEBRick -- couldn't find any information; a quick look over the code on WEBRick didn't turn up anything.
+-  Passenger -- couldn't find any information or Passenger.
+-  Puma -- found [this closed issue](https://github.com/puma/puma/issues/2), which leads me to believe it doesn't.
+-  Unicorn -- explicitly documents that it does NOT support pipelining.
+-  Thin -- there's [an open issue](https://github.com/macournoyer/thin/issues/40) where several people repeatedly claim pipelining is broken.
+-  Goliath -- pipelining is an [explicit design goal of Goliath](https://www.igvita.com/2011/10/04/optimizing-http-keep-alive-and-pipelining/), 
+-  Reel -- has pipelining support; confirmed by the author (Tony Arcieri).
+
+Note: HTTP/2 supports a more advanced model; HTTP/2 is message-oriented and therefore even more advanced than traditional pipelining.
+
 
 
 | Server     | Multi-Threaded | Multi-Fiber | Multi-Process | Evented | Watchdog | C Extension |
@@ -300,6 +313,7 @@ Java     -  ??
  Reel technically "multi-fiber" via Celluioid;
  Reel supports watchdogs via Celluloid supervisors;
  Reel uses a C extension on CRuby but has a compatible Java extension for JRuby)
+
 
 
 Todo: What features to add?
@@ -682,7 +696,7 @@ More
 
 ## Thanks
 
-Michael Dippery • Uwe Kubosch • Hongli Lai • Eric Wong
+Tony Arcieri • Michael Dippery • Uwe Kubosch • Hongli Lai • Eric Wong
 
 
 ## Meta
