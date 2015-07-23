@@ -403,7 +403,7 @@ $ ruby -run -e httpd ./_site -p 5000
 or to get all options:
 
 ~~~
-$ ruby -e "require 'un'; httpd" -- --help
+$ ruby -run -e httpd -- --help
 ~~~
 
 resulting in:
