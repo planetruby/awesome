@@ -26,6 +26,7 @@ A collection of awesome Ruby web servers (single-threaded, multi-threaded, multi
 [WEBrick](#webrick) •
 [Passenger Family](#passenger-family) •
 [Puma](#puma) •
+[Iodine](#iodine) •
 [Unicorn 'n' Friends](#unicorn-n-friends) •
 [Thin](#thin) •
 [Goliath](#goliath) •
@@ -107,6 +108,23 @@ Java      - Yes (Recommended)
 
 Note: (*) Global Interpreter Lock (GIL) in (C)Ruby "blocks" higher multi-threaded throughput
 
+### Iodine
+
+**c**  - _multi-threaded_, _multi-process_, _evented_
+
+A fast, evented, Rack HTTP/1.x and _Websocket_ server for Linux/BSD/macOS (enforces `kqueue` and `epoll`);
+Uses C extensively, circumventing The (C)Ruby GIL for IO read/write, parsing and other events.
+allows firing up multiple workers using the `-w` option and multiple thread using the `-t` option ;
+by Boaz Segev et al
+
+(github: [boazsegev/iodine](https://github.com/boazsegev/iodine),
+ gem: [iodine](https://rubygems.org/gems/iodine) _depends on rack_)
+
+Ruby      - Yes (Recommended*)  |
+Rubyinius - No                  |
+Java      - No
+
+Note: (*) Global Interpreter Lock (GIL) in (C)Ruby "blocks" application code. Iodine runs outside the GIL except when running user code. 
 
 
 ### Unicorn & Friends
@@ -264,20 +282,34 @@ Ruby     -  Yes (Recommended) |
 Rubinius -  ??                |
 Java     -  ??
 
+### Iodine(core)
+
+**c**  - _multi-threaded_, _multi-process_, _evented_
+
+In addition to the C based HTTP and Websocket server, Iodine offers an API for custom protocol design, evented programming and more;
+Iodine offloads pressure from (C)Ruby's GIL by using the [facil.io C web framework](https://github.com/boazsegev/facil.io) for the event loop, network reactor, timers, background IO events etc'. 
+by Boaz Segev et al
+
+(github: [boazsegev/iodine](https://github.com/boazsegev/iodine), gem: [iodine](https://rubygems.org/gems/iodine))
+
+Ruby     -  Yes (Recommended) |
+Rubinius -  ??                |
+Java     -  ??
 
 
 ## Feature Matrix
 
-| Server     | Rack     | HTTP/1.1 |  HTTP/1.1 Pipelining  | HTTP/2 |
-| :--------  | :------: |:-------: |  :------------------: | :----: |
-| WEBRick    |  Yes     |  Yes     |   x                   |   x    |
-| Passenger  |  Yes     |  Yes     |   x                   |  ??    |
-| Puma       |  Yes     |  Yes     |   x                   |   x    |
-| Unicorn    |  Yes     |  Yes     |   x                   |   x    |
-| Thin       |  Yes     |  Yes     |   x                   |   x    |
-| Goliath    |  Yes     |  Yes     |   Yes                 |   x    |
-| Reel       |  Yes(*)  |  Yes     |   Yes                 |   x    |
-| HTTP-2     |  ??      |   x      |   ??                  |  Yes   |
+| Server     | Rack     | HTTP/1.1 |  HTTP/1.1 Pipelining  | HTTP/2 | WebSockets |
+| :--------  | :------: |:-------: |  :------------------: | :----: | :--------: |
+| WEBRick    |  Yes     |  Yes     |   x                   |   x    |  x         |
+| Passenger  |  Yes     |  Yes     |   x                   |  ??    |  planned   |
+| Puma       |  Yes     |  Yes     |   x                   |   x    |  planned   |
+| Iodine     |  Yes     |  Yes     |   Yes                 |   x    |  Yes       |
+| Unicorn    |  Yes     |  Yes     |   x                   |   x    |  x         |
+| Thin       |  Yes     |  Yes     |   x                   |   x    |  x         |
+| Goliath    |  Yes     |  Yes     |   Yes                 |   x    |  x         |
+| Reel       |  Yes(*)  |  Yes     |   Yes                 |   x    |  x         |
+| HTTP-2     |  ??      |   x      |   ??                  |  Yes   |  x         |
 
 (Note: Reel supports Rack via reel-rack addon)
 
@@ -286,6 +318,7 @@ Notes on [HTTP Pipelining](https://en.wikipedia.org/wiki/HTTP_pipelining):
 -  WEBRick -- couldn't find any information; a quick look over the code on WEBRick didn't turn up anything.
 -  Passenger -- couldn't find any information or Passenger.
 -  Puma -- found [this closed issue](https://github.com/puma/puma/issues/2), which leads me to believe it doesn't.
+-  Iodine -- has pipelining support; confirmed by the author (Boaz Segev).
 -  Unicorn -- explicitly documents that it does NOT support pipelining.
 -  Thin -- there's [an open issue](https://github.com/macournoyer/thin/issues/40) where several people repeatedly claim pipelining is broken.
 -  Goliath -- pipelining is an [explicit design goal of Goliath](https://www.igvita.com/2011/10/04/optimizing-http-keep-alive-and-pipelining/)
@@ -300,6 +333,7 @@ Note: HTTP/2 supports a more advanced model; HTTP/2 is message-oriented and ther
 | WEBRick    |  Yes           |   x         |    x          |   x     |   x      |   x         |
 | Passenger  |  Yes           |   x         |   Yes         |  Yes    |  Yes     |  Yes        |
 | Puma       |  Yes           |   x         |   Yes         |   x     |   x      |  Yes        |
+| Iodine     |  Yes           |   x         |   Yes         |  Yes    |   x      |  Yes        |
 | Unicorn    |   x            |   x         |   Yes         |  Yes    |  Yes     |  Yes        | 
 | Thin       |  Yes           |   x         |    x          |  Yes    |   x      |  Yes        |
 | Goliath    |   x            |  Yes        |    x          |  Yes    |   x      |  Yes        |
@@ -317,6 +351,11 @@ Notes on Reel:
 - Reel supports watchdogs via Celluloid supervisors
 - Reel uses a C extension on CRuby but has a compatible Java extension for JRuby
 
+Notes on Iodine:
+
+- Supports "thousands of concurrent connections (tested with more then 20K connections)" by requiring `epoll` or `kqueue`.
+- Requires a Linux / BSD / macOS operating system (for `epoll` and `kqueue`).
+- Supports Multi-Apps both as nested applications and as multiple HTTP listenning ports.
 
 Todo: What features to add?
 
@@ -324,6 +363,7 @@ Todo: What features to add?
 - Streaming ?
 - Websocket ?
 - Server-sent events (SSE) ?
+- Static File Service (i.e., Iodine + Passange)
 
 
 
@@ -565,6 +605,46 @@ puma <options> <rackup file>
     -w, --workers COUNT              Activate cluster mode: How many worker processes to create
         --tag NAME                   Additional text to display in process listing
     -h, --help                       Show help
+~~~
+
+### Iodine
+
+~~~
+$ iodine -?
+~~~
+
+resulting in:
+
+~~~
+Iodine's HTTP/Websocket server version [version]
+
+Use:
+
+    iodine <options> <filename>
+
+Both <options> and <filename> are optional.
+
+Available options:
+ -p          Port number. Default: 3000.
+ -t          Number of threads. Default: CPU core count.
+ -w          Number of worker processes. Default: CPU core count.
+ -www        Public folder for static file serving. Default: nil (none).
+ -v          Log responses. Default: never log responses.
+ -warmup     Warmup invokes autoloading (lazy loading) during server startup.
+ -tout       HTTP inactivity connection timeout. Default: 5 seconds.
+ -maxbd      Maximum Mb per HTTP message (max body size). Default: 50Mib.
+ -maxms      Maximum Bytes per Websocket message. Default: 250Kib.
+ -ping       Websocket ping interval in seconds. Default: 40 seconds.
+ <filename>  Defaults to: config.ru
+
+Example:
+
+    iodine -p 80
+
+    iodine -p 8080 path/to/app/conf.ru
+
+    iodine -p 8080 -w 4 -t 16
+
 ~~~
 
 ### Unicorn
