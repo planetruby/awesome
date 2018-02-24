@@ -333,7 +333,7 @@ Notes on [HTTP Pipelining](https://en.wikipedia.org/wiki/HTTP_pipelining):
 -  Passenger -- couldn't find any information or Passenger.
 -  Puma -- found [this closed issue](https://github.com/puma/puma/issues/2), which leads me to believe it doesn't.
 -  Iodine -- has pipelining support; confirmed by the author (Boaz Segev).
--  Agoo -- has pipelining support supporting slow and fast clients
+-  Agoo -- has pipelining support for slow and fast clients
 -  Unicorn -- explicitly documents that it does NOT support pipelining.
 -  Thin -- there's [an open issue](https://github.com/macournoyer/thin/issues/40) where several people repeatedly claim pipelining is broken.
 -  Goliath -- pipelining is an [explicit design goal of Goliath](https://www.igvita.com/2011/10/04/optimizing-http-keep-alive-and-pipelining/)
