@@ -4,6 +4,7 @@ require 'open3'
 
 require 'agoo'
 require 'iodine'
+require 'thin'
 require 'webrick'
 
 while (index = ARGV.index('-I'))
@@ -86,6 +87,12 @@ sleep $server_wait_time
 $results['Thin'] = bench_gem('Thin', Thin::VERSION::STRING, 6462, false)
 Process.kill('INT', wt.pid)
 
+# Puma benchmarks
+_, _, _, wt = Open3.popen3('rackup', 'puma_bench.ru')
+sleep $server_wait_time
+$results['Puma'] = bench_gem('Puma', '??', 6466)
+Process.kill('INT', wt.pid)
+
 =begin
 # WEBrick benchmarks - More than one connection returns corrupt results.
 _, _, _, wt = Open3.popen3('rackup', 'webrick_bench.ru')
@@ -99,10 +106,8 @@ Process.kill('INT', wt.pid)
 # TBD goliath 3
 # TBD http-2 4
 # TBD passenger 5
-# TBD puma 6
 # TBD reel 7
-# TBD unicor 8n
-# TBD webrick 6469
+# TBD unicor 8
 
 
 # Sort the results and display.
