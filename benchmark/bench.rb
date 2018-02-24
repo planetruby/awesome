@@ -4,6 +4,7 @@ require 'open3'
 
 require 'agoo'
 require 'iodine'
+require 'webrick'
 
 while (index = ARGV.index('-I'))
   _,path = ARGV.slice!(index, 2)
@@ -11,7 +12,7 @@ while (index = ARGV.index('-I'))
 end
 
 $server_wait_time = 1.0
-$bench_duration = '5'
+$bench_duration = '2'
 $rate_con_count = '100'
 $lat_con_count = '5'
 $results = {}
@@ -19,13 +20,15 @@ $results = {}
 sleep $server_wait_time
 
 # returns [rate, latency]
-def benchPath(path, port)
+def bench_path(path, port, keep_alive)
   rate = 0
   latency = 0
+  cmd = ['perfer', '-p', path, '-t', '4', '-c', $rate_con_count, '-d', $bench_duration, "127.0.0.1:#{port}"]
+  cmd << '-k' if keep_alive
   # Run with more threads and more connections to get the max throughput. If
   # the rate count is 100 and threads is 4 then 400 keep-alive connections are
   # in use. The intent to to see how the server handles higher loads.
-  Open3.popen3('perfer', '-p', path, '-t', '4', '-c', $rate_con_count, '-d', $bench_duration, '-k', "127.0.0.1:#{port}") { |_, out, err, pwt|
+  Open3.popen3(*cmd) { |_, out, err, pwt|
     s = out.read
 
     target = 'for a rate of '
@@ -34,7 +37,9 @@ def benchPath(path, port)
     rate = s[i..j].to_i
   }
   # Run with a small number of connections to get the best latency.
-  Open3.popen3('perfer', '-p', path, '-t', '2', '-c', $lat_con_count, '-d', $bench_duration, '-k', "127.0.0.1:#{port}") { |_, out, err, pwt|
+  cmd = ['perfer', '-p', path, '-t', '2', '-c', $lat_con_count, '-d', $bench_duration, "127.0.0.1:#{port}"]
+  cmd << '-k' if keep_alive
+  Open3.popen3(*cmd) { |_, out, err, pwt|
     s = out.read
 
     target = 'average latency of '
@@ -45,20 +50,20 @@ def benchPath(path, port)
   [rate, latency]
 end
 
-def benchGem(gem, version, port)
+def bench_gem(gem, version, port, keep_alive=true)
   result = { version: version }
   # warm up
-  Open3.popen3('perfer', '-p', '/hello', '-d', '1', "127.0.0.1:#{port}") { |_, out, err, pwt|
+  Open3.popen3('perfer', '-p', '/hello', '-t', '1', '-c', '1', '-d', '1', "127.0.0.1:#{port}") { |_, out, err, pwt|
   }
-  rate, latency = benchPath('/hello', port)
+  rate, latency = bench_path('/hello', port, keep_alive)
   result[:rack_rate] = rate
   result[:rack_latency] = latency
-  puts "%-9s    rack: %7d requests/sec % 7.2f milliseconds/request" % [gem, rate, latency]
+  puts "%-9s   rack: %7d requests/sec % 7.2f milliseconds/request" % [gem, rate, latency]
   
-  rate, latency = benchPath('/', port)
+  rate, latency = bench_path('/index.html', port, keep_alive)
   result[:static_rate] = rate
   result[:static_latency] = latency
-  puts "%-9s  static: %7d requests/sec % 7.2f milliseconds/request" % [gem, rate, latency]
+  puts "%-9s static: %7d requests/sec % 7.2f milliseconds/request" % [gem, rate, latency]
 
   result
 end
@@ -66,14 +71,39 @@ end
 # Agoo benchmarks
 _, _, _, wt = Open3.popen3('ruby', '-I', '.', 'agoo_bench.rb')
 sleep $server_wait_time
-$results['Agoo'] =  benchGem('Agoo', Agoo::VERSION, 6460)
+$results['Agoo'] = bench_gem('Agoo', Agoo::VERSION, 6460)
 Process.kill('INT', wt.pid)
 
 # Iodine benchmarks
 _, _, _, wt = Open3.popen3('iodine', '-p', '6461', 'iodine_bench.ru')
 sleep $server_wait_time
-$results['Iodine'] =  benchGem('Iodine', Iodine::VERSION, 6461)
+$results['Iodine'] = bench_gem('Iodine', Iodine::VERSION, 6461)
 Process.kill('INT', wt.pid)
+
+# Thin benchmarks
+_, _, _, wt = Open3.popen3('ruby', 'thin_bench.rb')
+sleep $server_wait_time
+$results['Thin'] = bench_gem('Thin', '??', 6462, false)
+Process.kill('INT', wt.pid)
+
+=begin
+# WEBrick benchmarks - More than one connection returns corrupt results.
+_, _, _, wt = Open3.popen3('rackup', 'webrick_bench.ru')
+sleep $server_wait_time
+# WEBrick hangs or stalls when more than one connection is attempted.
+$results['WEBrick'] = bench_gem('WEBrick', WEBrick::VERSION, 6469, false)
+Process.kill('INT', wt.pid)
+=end
+
+
+# TBD goliath 3
+# TBD http-2 4
+# TBD passenger 5
+# TBD puma 6
+# TBD reel 7
+# TBD unicor 8n
+# TBD webrick 6469
+
 
 # Sort the results and display.
 keys = []
