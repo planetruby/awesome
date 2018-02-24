@@ -1,3 +1,5 @@
+$LOAD_PATH << '/home/ohler/git/agoo/ext'
+$LOAD_PATH << '/home/ohler/git/agoo/lib'
 
 require 'agoo'
 require 'hello'

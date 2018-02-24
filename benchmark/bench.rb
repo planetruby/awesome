@@ -11,28 +11,38 @@ while (index = ARGV.index('-I'))
 end
 
 $server_wait_time = 1.0
-$bench_duration = '4'
+$bench_duration = '5'
+$rate_con_count = '100'
+$lat_con_count = '5'
 $results = {}
 
 sleep $server_wait_time
 
 # returns [rate, latency]
 def benchPath(path, port)
-  Open3.popen3('perfer', '-p', path, '-t', '2', '-c', '10', '-d', $bench_duration, '-k', "127.0.0.1:#{port}") { |_, out, err, pwt|
+  rate = 0
+  latency = 0
+  # Run with more threads and more connections to get the max throughput. If
+  # the rate count is 100 and threads is 4 then 400 keep-alive connections are
+  # in use. The intent to to see how the server handles higher loads.
+  Open3.popen3('perfer', '-p', path, '-t', '4', '-c', $rate_con_count, '-d', $bench_duration, '-k', "127.0.0.1:#{port}") { |_, out, err, pwt|
     s = out.read
 
     target = 'for a rate of '
     i = s.index(target) + target.size
     j = s.index(' ', i) -1
     rate = s[i..j].to_i
-    
+  }
+  # Run with a small number of connections to get the best latency.
+  Open3.popen3('perfer', '-p', path, '-t', '2', '-c', $lat_con_count, '-d', $bench_duration, '-k', "127.0.0.1:#{port}") { |_, out, err, pwt|
+    s = out.read
+
     target = 'average latency of '
-    i = s.index(target, j) + target.size
+    i = s.index(target) + target.size
     j = s.index(' ', i) -1
     latency = s[i..j].to_f
-
-    [rate, latency]
   }
+  [rate, latency]
 end
 
 def benchGem(gem, version, port)
@@ -75,13 +85,12 @@ keys.sort! { |x1,x2|
 }
 
 puts
-puts " ----------------------------------------------------------------"
 puts "|           |    Rack Request    |   Static Request   |         |"
 puts "|           |    rate |  latency |    rate |  latency |         |"
-puts "|gem        | req/sec | msec/req | req/sec | msec/req | Version |"
-puts " ----------------------------------------------------------------"
+puts "| gem       | req/sec | msec/req | req/sec | msec/req | Version |"
+puts "|:--------- | -------:| --------:| -------:| --------:| ------- |"
 keys.each { |kr|
   result = $results[kr[0]]
   puts "| %-9s | % 7d | % 8.2f | % 7d | % 8.2f | %-7s |" % [kr[0], result[:rack_rate], result[:rack_latency], result[:static_rate], result[:static_latency], result[:version]]
 }
-puts " ----------------------------------------------------------------"
+puts

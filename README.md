@@ -22,11 +22,11 @@ A collection of awesome Ruby web servers (single-threaded, multi-threaded, multi
 
 #### _Contributions welcome. Anything missing? Send in a pull request. Thanks._
 
-
 [WEBrick](#webrick) •
 [Passenger Family](#passenger-family) •
 [Puma](#puma) •
 [Iodine](#iodine) •
+[Agoo](https://github.com/ohler55/agoo)
 [Unicorn 'n' Friends](#unicorn-n-friends) •
 [Thin](#thin) •
 [Goliath](#goliath) •
@@ -125,6 +125,19 @@ Rubyinius - No                  |
 Java      - No
 
 Note: (*) Global Interpreter Lock (GIL) in (C)Ruby "blocks" application code. Iodine runs outside the GIL except when running user code. 
+
+### Agoo
+
+**c**  - _multi-threaded_, _evented_
+
+A fast Rack server and Ruby gem for Linux and macOS. The
+[benchmarks](benchmark/benchmarks.md) say it all.
+
+(github: [ohler55/agoo](https://github.com/ohler55/agoo)
+
+Ruby      - Yes |
+Rubyinius - No  |
+Java      - No
 
 
 ### Unicorn & Friends
@@ -305,6 +318,7 @@ Java     -  ??
 | Passenger  |  Yes     |  Yes     |   x                   |  ??    |  planned   |
 | Puma       |  Yes     |  Yes     |   x                   |   x    |  planned   |
 | Iodine     |  Yes     |  Yes     |   Yes                 |   x    |  Yes       |
+| Agoo       |  Yes     |  Yes     |   Yes                 |   x    |  planned   |
 | Unicorn    |  Yes     |  Yes     |   x                   |   x    |  x         |
 | Thin       |  Yes     |  Yes     |   x                   |   x    |  x         |
 | Goliath    |  Yes     |  Yes     |   Yes                 |   x    |  x         |
@@ -319,6 +333,7 @@ Notes on [HTTP Pipelining](https://en.wikipedia.org/wiki/HTTP_pipelining):
 -  Passenger -- couldn't find any information or Passenger.
 -  Puma -- found [this closed issue](https://github.com/puma/puma/issues/2), which leads me to believe it doesn't.
 -  Iodine -- has pipelining support; confirmed by the author (Boaz Segev).
+-  Agoo -- has pipelining support supporting slow and fast clients
 -  Unicorn -- explicitly documents that it does NOT support pipelining.
 -  Thin -- there's [an open issue](https://github.com/macournoyer/thin/issues/40) where several people repeatedly claim pipelining is broken.
 -  Goliath -- pipelining is an [explicit design goal of Goliath](https://www.igvita.com/2011/10/04/optimizing-http-keep-alive-and-pipelining/)
@@ -334,6 +349,7 @@ Note: HTTP/2 supports a more advanced model; HTTP/2 is message-oriented and ther
 | Passenger  |  Yes           |   x         |   Yes         |  Yes    |  Yes     |  Yes        |
 | Puma       |  Yes           |   x         |   Yes         |   x     |   x      |  Yes        |
 | Iodine     |  Yes           |   x         |   Yes         |  Yes    |   x      |  Yes        |
+| Agoo       |  Yes           |   x         |    x          |  Yes    |   x      |  Yes        |
 | Unicorn    |   x            |   x         |   Yes         |  Yes    |  Yes     |  Yes        | 
 | Thin       |  Yes           |   x         |    x          |  Yes    |   x      |  Yes        |
 | Goliath    |   x            |  Yes        |    x          |  Yes    |   x      |  Yes        |
@@ -645,6 +661,36 @@ Example:
 
     iodine -p 8080 -w 4 -t 16
 
+~~~
+
+### Agoo
+
+~~~
+$ agoo -h
+~~~
+
+resulting in:
+
+~~~
+Usage: agoo [options] [<handler_class>@<path>]...
+
+version 1.1.1
+
+Agoo is a Ruby web server. It can be run as a standalone application using this
+application. The handler/class arguments must have the form of <class>@<path>
+where the class is the Ruby class where the new method takes not arguments and
+has either a call() method or a on_request() method.
+
+    -h, --help                       Show this display.
+    -s, --silent                     Silent.
+    -v, --verbose                    Increase verbosity.
+    -p, --port PORT                  Port to listen on.
+    -d, --dir DIR                    Directory to serve static assets from.
+    -r, --require FILE               Ruby require.
+        --log.dir DIR                Log file directory.
+        --[no-]log.classic           Classic log entries instead of JSON.
+        --[no-]log.console           Display log entries on the console.
+        --[no-]log.colorize          Display log entries in color.
 ~~~
 
 ### Unicorn

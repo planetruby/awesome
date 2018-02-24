@@ -1,4 +1,4 @@
-$: << '.'
+$LOAD_PATH << '.'
 
 require 'iodine'
 require 'hello'
