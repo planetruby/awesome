@@ -83,7 +83,7 @@ Process.kill('INT', wt.pid)
 # Thin benchmarks
 _, _, _, wt = Open3.popen3('ruby', 'thin_bench.rb')
 sleep $server_wait_time
-$results['Thin'] = bench_gem('Thin', '??', 6462, false)
+$results['Thin'] = bench_gem('Thin', Thin::VERSION::STRING, 6462, false)
 Process.kill('INT', wt.pid)
 
 =begin
