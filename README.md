@@ -26,7 +26,7 @@ A collection of awesome Ruby web servers (single-threaded, multi-threaded, multi
 [Passenger Family](#passenger-family) •
 [Puma](#puma) •
 [Iodine](#iodine) •
-[Agoo](https://github.com/ohler55/agoo)
+[Agoo](https://github.com/ohler55/agoo) •
 [Unicorn 'n' Friends](#unicorn-n-friends) •
 [Thin](#thin) •
 [Goliath](#goliath) •
@@ -133,7 +133,7 @@ Note: (*) Global Interpreter Lock (GIL) in (C)Ruby "blocks" application code. Io
 A fast Rack server and Ruby gem for Linux and macOS. The
 [benchmarks](benchmark/benchmarks.md) say it all.
 
-(github: [ohler55/agoo](https://github.com/ohler55/agoo)
+(github: [ohler55/agoo](https://github.com/ohler55/agoo), gem [agoo](https://rubygems.org/gems/agoo))
 
 Ruby      - Yes |
 Rubyinius - No  |
