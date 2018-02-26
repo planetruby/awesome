@@ -3,6 +3,24 @@
 ## Code Examples
 
 
+### Agoo - Hello World - #rack
+
+~~~
+require 'agoo'
+
+class Hello
+  def call(req)
+    [ 200, { 'Content-Type' => 'text/html' }, [ '<html><h1>Hello World!</h1></html>' ]]
+  end
+end
+
+server = Agoo::Server.new(6460, 'root', thread_count: 0)
+
+server.handle(:GET, "/hello", Hello.new)
+server.start()
+
+~~~
+
 ### Thin - Hello World - #rack
 
 ~~~
