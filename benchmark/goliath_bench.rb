@@ -1,13 +1,12 @@
 $LOAD_PATH << '.'
 
-require 'puma'
-require 'rack/handler/puma'
+require 'goliath'
 require 'hello'
 
 $hello = Hello.new
 
-class RackHandler
-  def call(env)
+class HelloWorld < Goliath::API
+  def response(env)
     path = env['SCRIPT_NAME'] + env['PATH_INFO']
     
     if '/hello' == path
@@ -21,5 +20,3 @@ class RackHandler
     end
   end
 end
-
-Rack::Handler::Puma.run(RackHandler.new, Port: 6465)

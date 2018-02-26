@@ -1,7 +1,5 @@
 $LOAD_PATH << '.'
 
-require 'puma'
-require 'rack/handler/puma'
 require 'hello'
 
 $hello = Hello.new
@@ -22,4 +20,4 @@ class RackHandler
   end
 end
 
-Rack::Handler::Puma.run(RackHandler.new, Port: 6465)
+run(RackHandler.new)

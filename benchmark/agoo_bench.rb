@@ -1,5 +1,4 @@
-$LOAD_PATH << '/home/ohler/git/agoo/ext'
-$LOAD_PATH << '/home/ohler/git/agoo/lib'
+$LOAD_PATH << '.'
 
 require 'agoo'
 require 'hello'

@@ -349,7 +349,7 @@ Note: HTTP/2 supports a more advanced model; HTTP/2 is message-oriented and ther
 | Passenger  |  Yes           |   x         |   Yes         |  Yes    |  Yes     |  Yes        |
 | Puma       |  Yes           |   x         |   Yes         |   x     |   x      |  Yes        |
 | Iodine     |  Yes           |   x         |   Yes         |  Yes    |   x      |  Yes        |
-| Agoo       |  Yes           |   x         |    x          |  Yes    |   x      |  Yes        |
+| Agoo       |  Yes           |   x         |  planned      |  Yes    |   x      |  Yes        |
 | Unicorn    |   x            |   x         |   Yes         |  Yes    |  Yes     |  Yes        | 
 | Thin       |  Yes           |   x         |    x          |  Yes    |   x      |  Yes        |
 | Goliath    |   x            |  Yes        |    x          |  Yes    |   x      |  Yes        |

@@ -1,12 +1,10 @@
 class Hello
-  def initialize
-    @response = [ 200,
-		  { 'Content-Type' => 'text/html' },
-		  [ '<html><h1>Hello World!</h1></html>' ]
-		]
-  end
+  RESPONSE = [ 200,
+	       { 'Content-Type' => 'text/html' }.freeze,
+	       [ '<html><h1>Hello Rack World!</h1></html>' ].freeze
+	     ].freeze
 
   def call(env)
-    @response
+    RESPONSE
   end
 end
