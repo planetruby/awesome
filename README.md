@@ -404,6 +404,7 @@ Notes on Falcon:
 - Supports 1 million web socket connections
 - Pure Ruby, runs on Linux / BSD/ macOS / Windows operating system using fibers
 - Experimental Multi-Apps (SNI) support
+- Uses HTTPS by default
 
 Todo: What features to add?
 
