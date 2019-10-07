@@ -1,6 +1,6 @@
 Awesome Series @ Planet Ruby
 
-[Rubies (Virtual Machines, Compilers, ...)](https://github.com/planetruby/awesome-rubies) • 
+[Rubies (Virtual Machines, Compilers, ...)](https://github.com/planetruby/awesome-rubies) •
 [ActiveRecord](https://github.com/planetruby/awesome-activerecord)  •
 [Webframeworks (Micro, Macro, APIs, ...)](https://github.com/planetruby/awesome-webframeworks) •
 [Webservers (Single-Threaded, Multi-Threaded, Evented, ...)](https://github.com/planetruby/awesome-webservers) •
@@ -40,13 +40,13 @@ A collection of awesome Ruby web servers (single-threaded, multi-threaded, multi
 
 ### WEBrick
 
-_multi-threaded_  
+_multi-threaded_
 
 An HTTP server toolkit; ships with the standard library (stdlib); lets you use HTTP(S) servers,
 proxy servers, and virtual-host servers;
 by Masayoshi Takahashi, Yuuzou Gotou et al
 
-(github: ruby/ruby/lib/[webrick.rb](https://github.com/ruby/ruby/blob/trunk/lib/webrick.rb)+[webrick/**](https://github.com/ruby/ruby/tree/trunk/lib/webrick))  
+(github: ruby/ruby/lib/[webrick.rb](https://github.com/ruby/ruby/blob/trunk/lib/webrick.rb)+[webrick/**](https://github.com/ruby/ruby/tree/trunk/lib/webrick))
 
 ~~~
 require 'webrick'
@@ -103,9 +103,9 @@ by Evan Phoenix et al
  github: [puma/puma](https://github.com/puma/puma),
  gem: [puma](https://rubygems.org/gems/puma) _depends on rack_)
 
-Ruby      - Yes (*)           |
-Rubyinius - Yes (Recommended) |
-Java      - Yes (Recommended)
+Ruby     - Yes (*)           |
+Rubinius - Yes (Recommended) |
+Java     - Yes (Recommended)
 
 Note: (*) Global Interpreter Lock (GIL) in (C)Ruby "blocks" higher multi-threaded throughput
 
@@ -121,11 +121,11 @@ by Boaz Segev et al
 (github: [boazsegev/iodine](https://github.com/boazsegev/iodine),
  gem: [iodine](https://rubygems.org/gems/iodine) _depends on rack_)
 
-Ruby      - Yes (Recommended*)  |
-Rubyinius - No                  |
-Java      - No
+Ruby     - Yes (Recommended*)  |
+Rubinius - No                  |
+Java     - No
 
-Note: (*) Global Interpreter Lock (GIL) in (C)Ruby "blocks" application code. Iodine runs outside the GIL except when running user code. 
+Note: (*) Global Interpreter Lock (GIL) in (C)Ruby "blocks" application code. Iodine runs outside the GIL except when running user code.
 
 ### Agoo
 
@@ -136,9 +136,9 @@ A fast Rack server and Ruby gem for Linux and macOS. The
 
 (github: [ohler55/agoo](https://github.com/ohler55/agoo), gem [agoo](https://rubygems.org/gems/agoo))
 
-Ruby      - Yes |
-Rubyinius - No  |
-Java      - No
+Ruby     - Yes |
+Rubinius - No  |
+Java     - No
 
 
 ### Unicorn & Friends
@@ -162,7 +162,7 @@ like non-blocking async socket I/O, threads, epoll or kqueue for supporting slow
 (web: [unicorn.bogomips.org](http://unicorn.bogomips.org),
  git: [unicorn](http://bogomips.org/unicorn.git),
  github mirror: [defunkt/unicorn](https://github.com/defunkt/unicorn),
- gem: [unicorn](https://rubygems.org/gems/unicorn) _depends on rack, kgio_) 
+ gem: [unicorn](https://rubygems.org/gems/unicorn) _depends on rack, kgio_)
 
 Ruby     - Yes (Recommended)  |
 Rubinius - ??                 |
@@ -176,9 +176,9 @@ _multi-process_, _multi-threaded_, _evented_, _eventmachine_, _fibers_
 
 A web server for sleepy apps and slow clients;
 based on unicorn, but designed to handle long request/response times and/or slow clients;
-Rainbows! is about diversity - network concurrency models supported include: 
+Rainbows! is about diversity - network concurrency models supported include:
 Epoll, EventMachine, FiberPool, FiberSpawn, NeverBlock, Revactor,
-ThreadPool, ThreadSpawn, WriterThreadPool, WriterThreadSpawn, XEpoll, XEpollThreadPool, 
+ThreadPool, ThreadSpawn, WriterThreadPool, WriterThreadSpawn, XEpoll, XEpollThreadPool,
 XEpollThreadSpawn and more;
 by Eric Wong et al
 
@@ -197,7 +197,7 @@ by Eric Wong et al
 
 (web: [yahns.yhbt.net](http://yahns.yhbt.net/README),
  git clone: [yhbt.net/yahns](git://yhbt.net/yahns.git),
- gem: [yahns](https://rubygems.org/gems/yahns)) 
+ gem: [yahns](https://rubygems.org/gems/yahns))
 
 
 
@@ -211,7 +211,7 @@ by Marc-André Cournoyer et al
 
 (web: [code.macournoyer.com/thin](http://code.macournoyer.com/thin),
  github: [macournoyer/thin](https://github.com/macournoyer/thin),
- gem: [thin](https://rubygems.org/gems/thin) _depends on rack, eventmachine_) 
+ gem: [thin](https://rubygems.org/gems/thin) _depends on rack, eventmachine_)
 
 Ruby     - Yes (Recommended) |
 Rubinius - ??                |
@@ -226,7 +226,7 @@ A non-blocking (async) web server framework; powered by event machine; uses fibe
 
 (web: [goliath.io](http://goliath.io),
  github: [postrank-labs/goliath](https://github.com/postrank-labs/goliath),
- gem: [goliath](https://rubygems.org/gems/goliath) _depends on rack, eventmachine_) 
+ gem: [goliath](https://rubygems.org/gems/goliath) _depends on rack, eventmachine_)
 
 Ruby     -  Yes (Recommended)  |
 Rubinius - ??                  |
@@ -238,7 +238,7 @@ Java     - ??
 
 **c** - _evented_, _celluloid_, _fibers_
 
-A fast, non-blocking "evented" web server built on Celluloid::IO; 
+A fast, non-blocking "evented" web server built on Celluloid::IO;
 supports Rack via the [reel-rack](https://github.com/celluloid/reel-rack) addon;
 technically "multi-fiber" via Celluloid;
 by Tony Arcieri et al
@@ -322,7 +322,7 @@ Java     -  ??
 **c**  - _multi-threaded_, _multi-process_, _evented_
 
 In addition to the C based HTTP and Websocket server, Iodine offers an API for custom protocol design, evented programming and more;
-Iodine offloads pressure from (C)Ruby's GIL by using the [facil.io C web framework](https://github.com/boazsegev/facil.io) for the event loop, network reactor, timers, background IO events etc'. 
+Iodine offloads pressure from (C)Ruby's GIL by using the [facil.io C web framework](https://github.com/boazsegev/facil.io) for the event loop, network reactor, timers, background IO events etc'.
 by Boaz Segev et al
 
 (github: [boazsegev/iodine](https://github.com/boazsegev/iodine), gem: [iodine](https://rubygems.org/gems/iodine))
@@ -421,7 +421,7 @@ Todo: What features to add?
 
 ### Do It Yourself (DIY) - A Simple HTTP Server From Scratch
 
-_HTTP - just a few lines of plain text describing each request and response sent over a TCP socket_ 
+_HTTP - just a few lines of plain text describing each request and response sent over a TCP socket_
 
 Example: HTTP Request `/index.html` (type in your browser `http://localhost/index.html`)
 
@@ -460,7 +460,7 @@ loop do
   html = "<html>\r\n"+
          "<h1>Hello, World!</h1>\r\n"+
          "</html>"
-  
+
   socket.write "HTTP/1.1 200 OK\r\n" +
                "Content-Type: text/html; charset=utf-8\r\n" +
                "Content-Length: #{html.bytesize}\r\n"
@@ -903,4 +903,3 @@ The awesome list is dedicated to the public domain. Use it as you please with no
 **Questions? Comments?**
 
 Send them along to the ruby-talk mailing list. Thanks!
-
