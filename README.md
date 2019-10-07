@@ -31,7 +31,8 @@ A collection of awesome Ruby web servers (single-threaded, multi-threaded, multi
 [Thin](#thin) •
 [Goliath](#goliath) •
 [Reel](#reel) •
-[HTTP-2](#http-2)
+[HTTP-2](#http-2) •
+[Falcon](#falcon)
 
 
 ## Multi-Threaded, Multi-Process, Async I/O, Multiplexed "Evented" Web Server
@@ -259,8 +260,29 @@ includes an `HTTP2::Server` for testing;
 by Ilya Grigorik et al
 
 (github: [igrigorik/http-2](https://github.com/igrigorik/http-2),
- gem: [http-2](https://rubygems.org/gems/http-2)) 
+ gem: [http-2](https://rubygems.org/gems/http-2))
 
+
+### Falcon
+
+_multi-process_, _multi-threaded_, _evented_, _fibers_
+
+Falcon is a multi-process, multi-fiber rack-compatible HTTP server built on top
+of async, async-io, async-container and async-http. Each request is executed
+within a lightweight fiber and can block on up-stream requests without stalling
+the entire server process. Falcon supports HTTP/1 and HTTP/2 natively;
+by Samuel G. D. Williams et al
+
+(github: [socketry/falcon](https://github.com/socketry/falcon),
+ gem: [falcon](https://rubygems.org/gems/falcon)
+ _depends on async, async-io, async-container, async-http_)
+
+Ruby        - Yes (Recommended)  |
+Rubinius    - ??                 |
+Java        - Yes                |
+TruffleRuby - Yes
+
+* Note: [priority business support](https://github.com/socketry/falcon#priority-business-support) is available.
 
 
 ## (Web) Server Machines / Building Blocks
@@ -324,6 +346,7 @@ Java     -  ??
 | Goliath    |  Yes     |  Yes     |   Yes                 |   x    |  x         |
 | Reel       |  Yes(*)  |  Yes     |   Yes                 |   x    |  x         |
 | HTTP-2     |  ??      |   x      |   ??                  |  Yes   |  x         |
+| Falcon     |  Yes     |  Yes     |   x                   |  Yes   |  Yes       |
 
 (Note: Reel supports Rack via reel-rack addon)
 
@@ -338,6 +361,7 @@ Notes on [HTTP Pipelining](https://en.wikipedia.org/wiki/HTTP_pipelining):
 -  Thin -- there's [an open issue](https://github.com/macournoyer/thin/issues/40) where several people repeatedly claim pipelining is broken.
 -  Goliath -- pipelining is an [explicit design goal of Goliath](https://www.igvita.com/2011/10/04/optimizing-http-keep-alive-and-pipelining/)
 -  Reel -- has pipelining support; confirmed by the author (Tony Arcieri).
+-  Falcon -- has native HTTP/2 support which supersedes HTTP pipelining.
 
 Note: HTTP/2 supports a more advanced model; HTTP/2 is message-oriented and therefore even more advanced than traditional HTTP/1.1 pipelining.
 
@@ -350,11 +374,12 @@ Note: HTTP/2 supports a more advanced model; HTTP/2 is message-oriented and ther
 | Puma       |  Yes           |   x         |   Yes         |   x     |   x      |  Yes        |
 | Iodine     |  Yes           |   x         |   Yes         |  Yes    |   x      |  Yes        |
 | Agoo       |  Yes           |   x         |  planned      |  Yes    |   x      |  Yes        |
-| Unicorn    |   x            |   x         |   Yes         |  Yes    |  Yes     |  Yes        | 
+| Unicorn    |   x            |   x         |   Yes         |  Yes    |  Yes     |  Yes        |
 | Thin       |  Yes           |   x         |    x          |  Yes    |   x      |  Yes        |
 | Goliath    |   x            |  Yes        |    x          |  Yes    |   x      |  Yes        |
 | Reel       |  Yes (*)       |  Yes (*)    |    x          |  Yes    |  Yes (*) |  Yes (*)    |
 | HTTP-2     |  ??            |   x         |    x          |  Yes    |   x      |   x         |
+| Falcon     |  Yes (*)       |  Yes        |    yes        |  Yes    |   x      |   x         |
 
 
 (Note: Thin, Goliath, ... using EventMachine)
@@ -372,6 +397,14 @@ Notes on Iodine:
 - Supports "thousands of concurrent connections (tested with more then 20K connections)" by requiring `epoll` or `kqueue`.
 - Requires a Linux / BSD / macOS operating system (for `epoll` and `kqueue`).
 - Supports Multi-Apps both as nested applications and as multiple HTTP listenning ports.
+
+Notes on Falcon:
+
+- Uses hybrid multi-process/multi-thread mode to support C-Ruby, JRuby and TruffleRuby
+- Supports 1 million web socket connections
+- Pure Ruby, runs on Linux / BSD/ macOS / Windows operating system using fibers
+- Experimental Multi-Apps (SNI) support
+- Uses HTTPS by default
 
 Todo: What features to add?
 
@@ -797,6 +830,40 @@ Common options:
     -h, --help                       Show this message
     -v, --version                    Show version
 ~~~
+
+
+### Falcon
+
+~~~
+$ falcon --help
+~~~
+
+resulting in:
+
+~~~
+falcon [--verbose | --quiet] [-h/--help] [-v/--version] <command>
+	An asynchronous HTTP server.
+
+	[--verbose | --quiet]  Verbosity of output for debugging.
+	[-h/--help]            Print out help information.
+	[-v/--version]         Print out the application version.
+	<command>              One of: serve, virtual.             Default: serve
+
+	serve [-b/--bind <address>] [-p/--port <number>] [-h/--hostname <hostname>] [-t/--timeout <duration>] [--reuse-port] [-c/--config <path>] [--forked | --threaded | --hybrid] [-n/--count <count>] [--forks <count>] [--threads <count>]
+		Run an HTTP server.
+
+		[-b/--bind <address>]               Bind to the given hostname/address                               Default: https://localhost:9292
+		[-p/--port <number>]                Override the specified port
+		[-h/--hostname <hostname>]          Specify the hostname which would be used for certificates, etc.
+		[-t/--timeout <duration>]           Specify the maximum time to wait for blocking operations.        Default: 60
+		[--reuse-port]                      Enable SO_REUSEPORT if possible.                                 Default: false
+		[-c/--config <path>]                Rackup configuration file to load                                Default: config.ru
+		[--forked | --threaded | --hybrid]  Select a specific parallelism model                              Default: forked
+		[-n/--count <count>]                Number of instances to start.                                    Default: 8
+		[--forks <count>]                   Number of forks (hybrid only).
+		[--threads <count>]                 Number of threads (hybrid only).
+~~~
+
 
 ## Glossary / Abbreviations
 
