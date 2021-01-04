@@ -1,3 +1,3 @@
-# Awesome collections
+# Awesome Ruby collections
 
 
